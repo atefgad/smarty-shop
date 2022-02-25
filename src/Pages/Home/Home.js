@@ -12,6 +12,7 @@ import {
 } from "../../Components";
 
 import Skeleton from "react-loading-skeleton";
+import Redorder from "./Redorder";
 
 const Loading = (
   <div>
@@ -45,6 +46,11 @@ function Home({ isLoading }) {
         <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
           <SectionHead title="The best Brands" linkPath="/" />
           <Brands />
+        </section>
+
+        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
+          <SectionHead title="Reorder List" linkPath="/" />
+          <Redorder />
         </section>
       </main>
     </Animated>

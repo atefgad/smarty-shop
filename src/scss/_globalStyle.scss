@@ -63,6 +63,12 @@ figure {
     }
 }
 
+.btn-outline-primary {
+    &:hover {
+        color: #000 !important;
+    }
+}
+
 .btn-outline-secondary {
     color: $main-color !important;
     border-color: $main-color !important;
@@ -152,7 +158,6 @@ figure {
 
     &:hover {
         transform: scale(1.1);
-        cursor: move;
     }
 }
 

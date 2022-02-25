@@ -3,6 +3,7 @@ import Topbar from "./Layout/Header/Topbar";
 import Header from "./Layout/Header/Header";
 
 import { AddToCartBtn } from "./Buttons/AddToCartBtn";
+import MainButton from "./Buttons/MainButton/MainButton";
 
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
@@ -16,10 +17,13 @@ import Bannar from "./Bannar/Bannar";
 import Brands from "./Brands/Brands";
 
 export {
+  //Layout
   Header,
   NavBar,
   Topbar,
+  // Butttons
   AddToCartBtn,
+  MainButton,
   CartListItem,
   CategoryList,
   HeroSection,

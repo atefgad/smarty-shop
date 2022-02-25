@@ -59,7 +59,10 @@ const Brands = () => {
     >
       {brandImages.map((item, index) => (
         <SwiperSlide key={index} virtualIndex={index}>
-          <a className="d-block bg-white shadow-sm rounded-3 py-3 py-sm-4">
+          <a
+            href="#!"
+            className="d-block bg-white shadow-sm rounded-3 py-3 py-sm-4"
+          >
             <img
               className="d-block mx-auto"
               src={item}

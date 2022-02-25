@@ -1,33 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // Import bootstrap components
 import { Container, Row, Col } from "react-bootstrap";
-// Import Icons
-import { IoChevronForwardOutline } from "react-icons/io5";
 
-import man from "../../Assets/images/man.png";
+// Import Images
 import girl from "../../Assets/images/girl.png";
-import girl2 from "../../Assets/images/girl2.png";
-import circle from "../../Assets/images/circle.svg";
 
 import "./HeroSection.scss";
+import { MainButton } from "../../Components";
 
 function HeroSection() {
+  const location = useLocation();
+  console.log("location =>", location);
   return (
     <div className="hero__section position-relative gradient-3 pt-5 pt-lg-6 pb-lg-7 mb-7">
       <Container>
         {/* heroSection Main-Slider */}
         <Row className="d-flex align-items-center justify-content-center">
-          <Col lg={4} className="order-sm-2 offset-lg-1">
+          <Col lg={4} className="offset-1 mb-sm-5">
             <h4 className="text-light text-capitalize">
               <Link to="/category/women's_clothing">women's fashion</Link>
             </h4>
-            <h2 className="Hero__Title fw-bolder text-black text-capitalize">
+            <h2 className="Hero__Title fw-bolder text-black text-capitalize mb-5">
               new <br /> arrivals
             </h2>
+            {/* 
             <a href="#!" className="btn btn-light btn-lg ">
               shop now
             </a>
+            */}
+            <MainButton title="Shop Now" to="/category/women's_clothing" />
           </Col>
           {/* Hero Image */}
           <Col lg={6} className="order-sm-1">
