@@ -1,0 +1,48 @@
+@import "../../scss/colors";
+
+/* section-head */
+.section-head {
+
+    .section-title {
+        position: relative;
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 15px;
+            position: absolute;
+            background: rgba(247, 115, 30, .3);
+            left: 0;
+            bottom: 12px;
+            z-index: -1;
+        }
+    }
+
+    .title-link {
+        color: $main-color !important;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: #000 !important;
+
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 11px;
+            bottom: -60px;
+            height: 150px;
+            width: 150px;
+            background-image: url(../../Assets/images/blob.svg);
+            background-position: center;
+            z-index: -1;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover::after {
+            -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+        }
+    }
+}

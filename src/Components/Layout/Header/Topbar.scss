@@ -1,0 +1,9 @@
+.topbar{
+    .topbar-link {
+        display: inline-block;
+        transition: color .25s ease-in-out, background-color .25s ease-in-out, box-shadow .25s ease-in-out, border-color .25s ease-in-out;
+        color: #6c6d89;
+        font-weight: 500;
+        text-decoration: none;
+    }
+}

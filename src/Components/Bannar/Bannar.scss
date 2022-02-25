@@ -1,0 +1,24 @@
+.bannar {
+    .bannar__card {
+        margin-top: 10rem;
+        z-index: 5;
+
+        .card__content {
+
+
+            .card__content__title {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 4rem;
+            }
+        }
+
+        .card__image {
+            max-height: 350px;
+            z-index: -1;
+
+            @media (max-width: 992px) {
+                opacity: 0.8;
+            }
+        }
+    }
+}

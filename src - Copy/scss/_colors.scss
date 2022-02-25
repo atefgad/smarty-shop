@@ -1,0 +1,80 @@
+$main-color: #f7731e;
+$blue: #7571f9;
+$green:#27ae60;
+$red: #c0392b;
+$orange: #d35400;
+$purple: #8e44ad;
+$black: #000;
+$gray: #efefef;
+
+.gradient-1 {
+    background-image: linear-gradient(230deg, #759bff, #843cf6);
+}
+
+.gradient-2 {
+    background-image: linear-gradient(230deg, #fc5286, #fbaaa2);
+}
+
+.gradient-3 {
+    background-image: linear-gradient(120deg, #fbaaa2 0%, #fbaaa2 30%, #d35400 100%);
+}
+
+/* accent */
+.bg--accent {
+    background-color: rgba(93, 60, 242, .1) !important;
+}
+
+/* warning */
+.bg--warning {
+    background-color: rgba(253, 188, 49, .15) !important;
+}
+
+/* orange */
+.bg--orange {
+    background-color: rgba(253, 86, 49, .1) !important;
+}
+
+/* success */
+.bg--success {
+    background-color: rgba(7, 201, 139, .1) !important;
+}
+
+.bg-blue {
+    background-color: $blue;
+}
+
+.bg-green {
+    background-color: $green;
+}
+
+.bg-red {
+    background-color: $red;
+}
+
+.bg-orange {
+    background-color: $orange;
+}
+
+.bg-purple {
+    background-color: $purple;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.text-green {
+    color: $green;
+}
+
+.text-red {
+    color: $red;
+}
+
+.text-orange {
+    color: $orange;
+}
+
+.text-purple {
+    color: $purple;
+}

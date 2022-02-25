@@ -1,0 +1,102 @@
+.main-categories {
+    margin-top: -160px;
+    z-index: 999;
+
+    .icon-box {
+        z-index: 999;
+
+        span {
+            font-size: .9rem;
+        }
+
+        /* accent */
+        .bg--accent {
+            background-color: rgba(93, 60, 242, .1) !important;
+        }
+
+        .text-accent {
+            color: #5d3cf2 !important;
+        }
+
+        &:hover .icon-box-media.text-accent,
+        .icon-box.active .icon-box-media.text-accent,
+        .icon-box.show .icon-box-media.text-accent {
+            background-color: #5d3cf2 !important;
+            color: #fff !important;
+        }
+
+        /* warning */
+        .bg--warning {
+            background-color: rgba(253, 188, 49, .15) !important;
+        }
+
+        .text-warning {
+            color: #fdbc31 !important;
+        }
+
+        &:hover .icon-box-media.text-warning,
+        .icon-box.active .icon-box-media.text-warning,
+        .icon-box.show .icon-box-media.text-warning {
+            background-color: #fdbc31 !important;
+            color: #fff !important;
+        }
+
+        /* orange */
+        .bg--orange {
+            background-color: rgba(253, 86, 49, .1) !important;
+        }
+
+        .text-orange {
+            color: #fd5631 !important;
+        }
+
+        &:hover .icon-box-media.text-orange,
+        .icon-box.active .icon-box-media.text-orange,
+        .icon-box.show .icon-box-media.text-orange {
+            background-color: #fd5631 !important;
+            color: #fff !important;
+        }
+
+        /* success */
+        .bg--success {
+            background-color: rgba(7, 201, 139, .1) !important;
+        }
+
+        .text-success {
+            color: #07c98b !important;
+        }
+
+        &:hover .icon-box-media.text-success,
+        .icon-box.active .icon-box-media.text-success,
+        .icon-box.show .icon-box-media.text-success {
+            background-color: #07c98b !important;
+            color: #fff !important;
+        }
+
+
+    }
+
+    .icon-box-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        min-width: 5rem;
+        height: 5rem;
+        transition: background-color .22s ease-in-out, color .22s ease-in-out;
+        border-radius: .5rem;
+        background-position: center;
+        background-size: cover;
+        font-size: 3rem;
+
+        // line-height: 2.75rem;
+        // text-align: center;
+    }
+
+    .icon-box-title {
+        font-size: 1.2rem !important;
+        color: #000;
+    }
+
+
+}
