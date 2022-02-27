@@ -11,7 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import "react-toastify/dist/ReactToastify.min.css";
 // import "react-toastify/dist/ReactToastify.css";
 
-import { Header, Loading } from "../Components";
+import { Header, Footer, Loading } from "../Components";
 
 // import Pages Components
 import { Home, Product, Category, Shop, About, Page404 } from "../Pages";
@@ -36,7 +36,7 @@ function App() {
       ) : (
         <div className="app__container">
           <Header />
-          <AnimatePresence  exitBeforeEnter>
+          <AnimatePresence exitBeforeEnter>
             <Routes key={location.pathname} location={location}>
               <Route index path="/" element={<Home isLoading={isLoading} />} />
               <Route path="shop" element={<Shop />} />
@@ -45,6 +45,7 @@ function App() {
               <Route path="*" element={<Page404 />} />
             </Routes>
           </AnimatePresence>
+          <Footer />
           {/* ReactToastify */}
           <ToastContainer
             position="top-left"

@@ -1,6 +1,7 @@
-import NavBar from "./Layout/Header/NavBar";
-import Topbar from "./Layout/Header/Topbar";
+import NavBar from "./Layout/Header/NavBar/NavBar";
+import Topbar from "./Layout/Header/TopBar/Topbar";
 import Header from "./Layout/Header/Header";
+import Footer from "./Layout/Footer/Footer";
 
 import { AddToCartBtn } from "./Buttons/AddToCartBtn";
 import MainButton from "./Buttons/MainButton/MainButton";
@@ -19,6 +20,7 @@ import Brands from "./Brands/Brands";
 export {
   //Layout
   Header,
+  Footer,
   NavBar,
   Topbar,
   // Butttons

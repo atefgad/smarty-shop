@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import NavBar from "./NavBar";
-import Topbar from "./Topbar";
+import { NavBar, Topbar } from "../../../Components";
 
 export default function Header() {
   return (

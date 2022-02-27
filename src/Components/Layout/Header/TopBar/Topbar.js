@@ -2,10 +2,10 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
 
-import En from "../../../Assets/images/flags/en.png";
-import De from "../../../Assets/images/flags/de.png";
-import Fr from "../../../Assets/images/flags/fr.png";
-import It from "../../../Assets/images/flags/it.png";
+import En from "../../../../Assets/images/flags/en.png";
+import De from "../../../../Assets/images/flags/de.png";
+import Fr from "../../../../Assets/images/flags/fr.png";
+import It from "../../../../Assets/images/flags/it.png";
 
 function Topbar() {
   return (

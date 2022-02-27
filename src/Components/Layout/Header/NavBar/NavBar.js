@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Offcanvas,
-} from "react-bootstrap";
+import { Button, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
 import "./NavBar.scss";
-import Logo from "../../../Assets/images/logo.png";
+import Logo from "../../../../Assets/images/logo.png";
 import {
   IoSearchOutline,
   IoCartOutline,
@@ -16,10 +10,12 @@ import {
   IoCardOutline,
 } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import CartListItem from "../../CartListItem/CartListItem";
+import CartListItem from "../../../CartListItem/CartListItem";
 import { Link } from "react-router-dom";
 
-import NoCartItems from "./NoCartItems";
+import NoCartItems from "../NoCartItems";
+import NavMenu from "./NavMenu";
+import MenuList from "../../../MenuList/MenuList";
 
 export default function NavBar() {
   const cart = useSelector((state) => state.cart.cartItems);
@@ -80,61 +76,12 @@ export default function NavBar() {
     </React.Fragment>
   );
 
-  // NavBarMenu
-  const NavBarMenu = (
-    <React.Fragment>
-      {/* primary Menu_SideBar offcanvas offcanvas-collapse */}
-      <Offcanvas
-        className="order-lg-1"
-        show={showMenu}
-        onHide={() => setShowMenu(false)}
-        placement="start"
-      >
-        {/* offcanvas-header */}
-        <Offcanvas.Header closeButton className="navbar-shadow">
-          <Offcanvas.Title className="mt-1 mb-0">Menu</Offcanvas.Title>
-        </Offcanvas.Header>
-        {/* offcanvas-header:END */}
-
-        {/* offcanvas-body */}
-        <Offcanvas.Body>
-          <Nav className="d-none d-sm-block ml-0 pl-0">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Offcanvas.Body>
-        {/* offcanvas-body:END */}
-
-        {/* offcanvas-footer */}
-        <div className="offcanvas-footer border-top">
-          <a
-            className="btn btn-translucent-primary d-block w-100"
-            href="#modal-signin"
-            data-bs-toggle="modal"
-            data-view="#modal-signin-view"
-          >
-            <i className="ai-user fs-lg me-2"></i>Sign in
-          </a>
-        </div>
-        {/* offcanvas-footer:END */}
-      </Offcanvas>
-      {/* primary Menu_SideBar:END */}
-    </React.Fragment>
-  );
-
   return (
-    <Navbar bg="light" expand="lg" className="navbar-shadow navbar-sticky">
+    <Navbar
+      bg="light"
+      expand="lg"
+      className="navbar-shadow navbar-sticky sticky-md-top"
+    >
       {/* container */}
       <div className="container px-xl-3">
         <Button
@@ -155,22 +102,9 @@ export default function NavBar() {
         {/* Navbar Menu */}
         <Navbar className="d-none d-xl-block py-xl-3 ml-0 ">
           <ul className="navbar-nav">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">About</Nav.Link>
-            <NavDropdown title="categories">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <MenuList />
           </ul>
         </Navbar>
-        {/* NavBarMenu */}
 
         {/* Right Box-icon */}
         <div className="d-flex align-items-center order-lg-3 ms-lg-auto">
@@ -208,7 +142,7 @@ export default function NavBar() {
       {ShowCart}
 
       {/* Left Sidebar[Menu] */}
-      {NavBarMenu}
+      <NavMenu showMenu={showMenu} setShowMenu={setShowMenu} />
 
       {/* Navbar:END */}
     </Navbar>
