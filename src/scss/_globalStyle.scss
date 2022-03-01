@@ -55,6 +55,12 @@ figure {
 }
 
 /* Buttons */
+.btn:focus,
+button:focus {
+    outline: 0;
+    box-shadow: unset !important;
+}
+
 .btn-primary {
     color: #fff !important;
 
@@ -190,6 +196,8 @@ figure {
 
 .border-text {
     position: relative;
+    display: block;
+    z-index: 1;
 
     &::before {
         height: 10px;
@@ -199,7 +207,8 @@ figure {
         position: absolute;
         z-index: -1;
         left: 0;
-        bottom: 10px;
+        bottom: 0;
+        opacity: 0.3;
     }
 }
 

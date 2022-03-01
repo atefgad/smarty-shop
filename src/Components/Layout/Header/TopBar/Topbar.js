@@ -21,7 +21,10 @@ function Topbar() {
           </a>
         </div>
         <div className="d-flex text-md-end ms-md-auto">
-          <a className="topbar__link me-3" href="#!">
+          <a
+            className="btn btn-link text-muted text-decoration-none me-3"
+            href="#!"
+          >
             <IoLocationOutline className="me-1" color={"#fefefe"} />
             track your order
           </a>
@@ -29,24 +32,24 @@ function Topbar() {
           <Dropdown className="ms-auto ms-md-0">
             <Dropdown.Toggle
               as="a"
-              className="topbar-link dropdown-toggle"
+              className="btn btn-link text-uppercase text-muted text-decoration-none dropdown-toggle"
               id="dropdown-autoclose-true"
             >
               <img className="me-2" src={En} alt="English" width="20" />
-              Eng
+              En
             </Dropdown.Toggle>
             <Dropdown.Menu className="super-colors">
               <Dropdown.Item as="button">
                 <img className="me-2" src={Fr} alt="Français" width="20" />
-                Français
+                Fr
               </Dropdown.Item>
               <Dropdown.Item as="button">
                 <img className="me-2" src={De} alt="Deutsch" width="20" />
-                Deutsch
+                De
               </Dropdown.Item>
               <Dropdown.Item as="button">
                 <img className="me-2" src={It} alt="Italiano" width="20" />
-                Italiano
+                It
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

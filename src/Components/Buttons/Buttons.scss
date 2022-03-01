@@ -5,16 +5,11 @@
     height: 60px;
     border: 0;
     border-radius: 10px;
-    background-color: #4834d4;
     outline: none;
     cursor: pointer;
     color: #fff;
     transition: .3s ease-in-out;
     overflow: hidden;
-}
-
-.cart-button:hover {
-    background-color: #35269b;
 }
 
 .cart-button:active {
@@ -34,8 +29,8 @@
     position: absolute;
     z-index: 3;
     top: -20%;
-    left: 52%;
-    font-size: 1.2em;
+    left: 50%;
+    font-size: 1rem;
     transform: translate(-50%, -50%);
 }
 

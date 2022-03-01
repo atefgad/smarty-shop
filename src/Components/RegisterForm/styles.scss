@@ -1,0 +1,45 @@
+.register__form {
+    .form-control {
+        background: transparent;
+        font-size: 16px;
+        color: rgb(64, 69, 83);
+        display: block;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        transform: none;
+        cursor: auto;
+        border-image: initial;
+        border-bottom: 1px solid rgb(226, 229, 241);
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+
+    label {
+        margin: 0;
+        color: rgb(126, 133, 155);
+        font-size: 1rem;
+        max-width: 100%;
+        pointer-events: none;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition: all 0.2s ease 0s;
+    }
+
+    .eye_icon {
+        position: absolute;
+        right: 10px;
+        font-size: 1.5rem;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    button {
+        border: none;
+    }
+}

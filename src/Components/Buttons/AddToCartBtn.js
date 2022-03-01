@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaBox, FaShoppingCart } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 
 import "./Buttons.scss";
 
@@ -9,6 +10,7 @@ export function AddToCartBtn({
   className,
   clicked = false,
   onClick,
+  qty,
   ...props
 }) {
   return (
@@ -17,8 +19,13 @@ export function AddToCartBtn({
       className={`cart-button ${className} ${clicked ? "clicked" : ""}`}
     >
       <span className="add-to-cart">{title}</span>
-      <span className="added">Added</span>
-      <FaShoppingCart className="fa-shopping-cart" />
+      <span className="added">
+        <i className="translate-middle-x badge rounded-pill bg-light text-primary">
+          {qty}
+        </i>
+        Added to cart
+      </span>
+      <IoCartOutline className="fa-shopping-cart" />
       <FaBox className="fa-box" />
     </button>
   );

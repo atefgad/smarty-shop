@@ -3,18 +3,6 @@
 .footer {
     box-shadow: rgba(33, 35, 38, 0.3) 0px 10px 10px -10px;
     z-index: 1;
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     left: 0;
-    //     top: 0;
-    //     width: 150px;
-    //     height: 100px;
-    //     background-color: #fff;
-    //     border-color: white #37384e #37384e white;
-    //     border-width: 20px;
-    //     border-style: solid;
-    // }
 
     &::before {
         content: "";

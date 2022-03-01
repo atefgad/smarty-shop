@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Button, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Button, Navbar, Offcanvas } from "react-bootstrap";
 import "./NavBar.scss";
 import Logo from "../../../../Assets/images/logo.png";
+
+// import Icons
 import {
   IoSearchOutline,
   IoCartOutline,
@@ -9,18 +13,22 @@ import {
   IoListOutline,
   IoCardOutline,
 } from "react-icons/io5";
-import { useSelector } from "react-redux";
+
 import CartListItem from "../../../CartListItem/CartListItem";
-import { Link } from "react-router-dom";
 
 import NoCartItems from "../NoCartItems";
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
+import { AuthModal, SignIn, SignUp } from "../../..";
+
 export default function NavBar() {
   const cart = useSelector((state) => state.cart.cartItems);
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
+  const [modalShow, setModalShow] = useState(false);
+  const [signToggle, setSignToggle] = useState(true);
 
   // Cart
   const ShowCart = (
@@ -77,11 +85,7 @@ export default function NavBar() {
   );
 
   return (
-    <Navbar
-      bg="light"
-      expand="lg"
-      className="navbar-shadow navbar-sticky sticky-md-top"
-    >
+    <Navbar bg="light" expand="lg" className="navbar-shadow">
       {/* container */}
       <div className="container px-xl-3">
         <Button
@@ -113,12 +117,7 @@ export default function NavBar() {
               <IoSearchOutline />
             </a>
           </div>
-          <div className="navbar-tool d-none d-sm-flex">
-            <a className="navbar-tool-icon-box me-2" href="#!">
-              <IoPersonOutline />
-            </a>
-          </div>
-          <div className="border-start me-2" style={{ height: 30 }}></div>
+
           <div className="navbar-tool me-2">
             <a
               href="#!"
@@ -133,6 +132,16 @@ export default function NavBar() {
               )}
             </a>
           </div>
+          <div className="border-start ms-2" style={{ height: 30 }}></div>
+          <div className="navbar-tool ms-2 d-sm-flex">
+            <a
+              className="navbar-tool-icon-box "
+              href="#!"
+              onClick={() => setModalShow(true)}
+            >
+              <IoPersonOutline /> <span className="fw-bold">Login</span>
+            </a>
+          </div>
         </div>
         {/* Right Box-icon:END */}
       </div>
@@ -144,6 +153,14 @@ export default function NavBar() {
       {/* Left Sidebar[Menu] */}
       <NavMenu showMenu={showMenu} setShowMenu={setShowMenu} />
 
+      {/* Login Modal*/}
+      <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
+        {signToggle ? (
+          <SignIn showSign={signToggle} signToggle={setSignToggle} />
+        ) : (
+          <SignUp showSign={signToggle} signToggle={setSignToggle} />
+        )}
+      </AuthModal>
       {/* Navbar:END */}
     </Navbar>
   );

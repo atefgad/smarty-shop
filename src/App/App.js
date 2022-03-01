@@ -24,10 +24,11 @@ function App() {
   const location = useLocation();
 
   // const isLoading = true;
-
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  console.log(isLoading);
 
   return (
     <React.Fragment>

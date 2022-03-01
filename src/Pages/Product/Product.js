@@ -58,7 +58,6 @@ function Product() {
 
   // handleAddToCart
   const handleAddToCart = (date) => {
-    console.log("date =>", date);
     dispatch(addToCart(date));
     setClicked(true);
     setTimeout(() => {
@@ -192,6 +191,7 @@ function Product() {
                   onClick={() =>
                     handleAddToCart({ ...getProduct, quantity: qty })
                   }
+                  qty={qty}
                   clicked={Clicked}
                   className="btn-primary fw-bold text-light btn-lg d-block w-100"
                 />

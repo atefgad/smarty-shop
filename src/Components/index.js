@@ -6,6 +6,14 @@ import Footer from "./Layout/Footer/Footer";
 import { AddToCartBtn } from "./Buttons/AddToCartBtn";
 import MainButton from "./Buttons/MainButton/MainButton";
 
+// Modals
+import ModalUi from "./Modal/Modal";
+import AuthModal from "./Modal/AuthModal";
+
+//Register form
+import SignIn from "./RegisterForm/SignIn/SignIn";
+import SignUp from "./RegisterForm/SignUp/SignUp";
+
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
 import HeroSection from "./HeroSection/HeroSection";
@@ -26,6 +34,12 @@ export {
   // Butttons
   AddToCartBtn,
   MainButton,
+  //Modals
+  AuthModal,
+  ModalUi,
+  //Register form
+  SignIn,
+  SignUp,
   CartListItem,
   CategoryList,
   HeroSection,
