@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
 
 import {
   HeroSection,
@@ -10,20 +9,6 @@ import {
   Bannar,
   Brands,
 } from "../../Components";
-
-import Skeleton from "react-loading-skeleton";
-import Redorder from "./Redorder";
-
-const Loading = (
-  <div>
-    <div className="col-md-12">
-      <Skeleton height={40} />
-    </div>
-    <div className="col-md-12">
-      <Skeleton height={70} count={2} />
-    </div>
-  </div>
-);
 
 function Home({ isLoading }) {
   return (
@@ -47,7 +32,6 @@ function Home({ isLoading }) {
         </section>
         <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
           <SectionHead title="Reorder List" linkPath="/" />
-          <Redorder />
         </section>
       </main>
     </Animated>

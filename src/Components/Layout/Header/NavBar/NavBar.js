@@ -99,7 +99,8 @@ export default function NavBar() {
           className="navbar-brand flex-shrink-0 order-lg-0 mx-auto ms-lg-0 pe-lg-2 me-lg-4"
           to="/"
         >
-          <img src={Logo} alt="smarty shop logo" />
+          <img src={Logo} title="smarty shop" alt="smarty shop logo" />
+          <small>marty</small>
           <span className="sub-logo text-primary fw-bold">hop</span>
         </Link>
 

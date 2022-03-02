@@ -15,6 +15,10 @@
         &:focus {
             box-shadow: none !important;
         }
+
+        &.is-invalid {
+            background-image: none;
+        }
     }
 
     label {

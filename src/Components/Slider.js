@@ -17,7 +17,6 @@ const Slider = () => {
     (product) => product.rating.rate > 3
   );
 
-  console.log("getProductsByRating => ", getProductsByRating);
   return (
     <Swiper
       modules={[Virtual]}

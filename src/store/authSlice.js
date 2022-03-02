@@ -1,47 +1,73 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getLocalStorage, setLocalStorage } from "./functions";
+import authService from "./authService";
 
-import { toast } from "react-toastify";
-
-const getUsers = createAsyncThunk("users/getUsers", async (_, thunkAPi) => {
-  const { rejectWithValue } = thunkAPi;
-  try {
-    const response = await fetch("https://fakestoreapi.com/users");
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-});
+// Get user from the localStorage
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  cartItems: getLocalStorage("cartItems")
-    ? JSON.parse(getLocalStorage("cartItems"))
-    : [],
+  user: user ? user : null,
   isLoggedIn: false,
-  name: "atef",
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: "",
 };
+
+// Register user
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      return await authService.register(user);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return rejectWithValue(message);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    isLoggedIn: false,
-    name: "atef",
-  },
+  initialState,
   reducers: {
+    reset: (state) => {
+      state.isLoggedIn = false;
+      state.isError = false;
+      state.isSuccess = false;
+      state.isLoading = false;
+      state.message = "";
+    },
     logInOut: (state) => {
       state.isLoggedIn = !state.isLoggedIn;
     },
   },
   extraReducers: {
-    [getUsers.pending]: (state) => {
-      console.log("users", state);
+    [register.pending]: (state) => {
+      state.isLoading = true;
+      console.log("auth/pending", state);
     },
-    [getUsers.pending]: (state) => {
-      console.log("users", state);
+    [register.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.user = action.payload;
+      console.log("auth/state", state);
+      console.log("auth/action", action);
+    },
+    [register.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+      state.user = null;
+      console.log("auth", state);
     },
   },
 });
 
-export const { logInOut } = authSlice.actions;
+export const { reset, logInOut } = authSlice.actions;
 export default authSlice.reducer;

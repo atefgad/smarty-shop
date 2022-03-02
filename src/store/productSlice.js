@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
-  async (_, athunkAPI) => {
-    const { rejectWithValue } = athunkAPI;
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
@@ -15,8 +15,8 @@ export const getProducts = createAsyncThunk(
   }
 );
 
-{
-  /*
+//{
+/*
 // getProduct
 export const getProduct = createAsyncThunk(
   "products/getProduct",
@@ -33,7 +33,7 @@ export const getProduct = createAsyncThunk(
   }
 );
 */
-}
+//}
 
 // products [actions - reducers]
 const productSlice = createSlice({

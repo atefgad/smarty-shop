@@ -28,8 +28,6 @@ function App() {
     dispatch(getProducts());
   }, [dispatch]);
 
-  console.log(isLoading);
-
   return (
     <React.Fragment>
       {isLoading ? (

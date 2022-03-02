@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import error404Img from "../../Assets/images/404.svg";
 
-import { Animated } from "../../Components";
-
 const animations = {
   initial: { opacity: 0, scale: 0 },
   animate: { opacity: 1, scale: 1 },
