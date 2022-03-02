@@ -5,7 +5,7 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 
-import { register, reset } from "../../../store/authSlice";
+import { login, reset } from "../../../store/authSlice";
 
 import { Formik, Form as FORM, Field } from "formik";
 import * as Yup from "yup";
@@ -19,14 +19,6 @@ const animations = {
 
 // Signup Validations
 const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Please Enter Your First Name!"),
-  lastName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Please Enter Your Last Name!"),
   email: Yup.string()
     .email("Invalid email")
     .required("Please Enter Your Email!"),
@@ -36,7 +28,7 @@ const SignupSchema = Yup.object().shape({
     .required("Please Enter Your Password!"),
 });
 
-function SignUp({ showSign, signToggle }) {
+function SignIn({ showSign, signToggle }) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
@@ -51,14 +43,6 @@ function SignUp({ showSign, signToggle }) {
 
     dispatch(reset());
   }, [user, isLoading, isError, isSuccess, message, dispatch]);
-
-  if (isLoading) {
-    return (
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
-  }
   return (
     <motion.div
       className="register__form"
@@ -67,24 +51,23 @@ function SignUp({ showSign, signToggle }) {
       animate="animate"
       transition={{ ease: "easeOut", duration: 1.5 }}
     >
-      <div className="text-center mb-3">
-        <h3 className="text-dark">Create an account</h3>
+      <div className="text-center mb-5">
+        <p className="text-dark">Welcome back!</p>
+        <h3 className="text-dark mb-3">Sign in to your account</h3>
         <div className="d-flex justify-content-center">
-          <span className="text-muted">Already have an account?</span>
+          <span className="text-muted">Don't have an account?</span>
           <a
             className="ms-2 fw-bold border-text"
             href="#!"
             onClick={() => signToggle(!showSign)}
           >
-            Sign In
+            Sign Up
           </a>
         </div>
       </div>
       {/* form fields */}
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
           email: "",
           password: "",
         }}
@@ -92,38 +75,12 @@ function SignUp({ showSign, signToggle }) {
         onSubmit={(values) => {
           // same shape as initial values
           // console.log(values);
-          dispatch(register(values));
+          dispatch(login(values));
         }}
       >
         {({ errors, touched }) => (
           <FORM>
             <div className="px-4">
-              {/* firstName field */}
-              <Form.Group className="mb-3">
-                <Form.Label>first Name</Form.Label>
-                <Field
-                  className={`form-control ${
-                    errors.firstName ? "is-invalid" : null
-                  }`}
-                  name="firstName"
-                />
-                {errors.firstName && touched.firstName ? (
-                  <div className="invalid-feedback">{errors.firstName}</div>
-                ) : null}
-              </Form.Group>
-              {/* lastName field */}
-              <Form.Group className="mb-3">
-                <Form.Label>last Name</Form.Label>
-                <Field
-                  className={`form-control ${
-                    errors.lastName ? "is-invalid" : null
-                  }`}
-                  name="lastName"
-                />
-                {errors.lastName && touched.lastName ? (
-                  <div className="invalid-feedback">{errors.lastName}</div>
-                ) : null}
-              </Form.Group>
               {/* Email field */}
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
@@ -178,4 +135,4 @@ function SignUp({ showSign, signToggle }) {
   );
 }
 
-export default SignUp;
+export default SignIn;

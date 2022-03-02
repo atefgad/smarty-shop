@@ -20,7 +20,7 @@ import HeroSection from "./HeroSection/HeroSection";
 import Loading from "./Loading/Loading";
 import ProductCard from "./ProductCard/ProductCard";
 import SectionHead from "./SectionTitle/SectionHead";
-import Slider from "./Slider";
+import ProductsSlides from "./ProductsSlides";
 import Animated from "./Animated/Animated";
 import Bannar from "./Bannar/Bannar";
 import Brands from "./Brands/Brands";
@@ -46,7 +46,7 @@ export {
   Loading,
   ProductCard,
   SectionHead,
-  Slider,
+  ProductsSlides,
   Animated,
   Bannar,
   Brands,

@@ -1,7 +1,11 @@
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+
+import { login, reset } from "../../../store/authSlice";
 
 import "../styles.scss";
 
@@ -11,7 +15,44 @@ const animations = {
 };
 
 function SignIn({ showSign, signToggle }) {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = formData;
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+  }, [user, isLoading, isError, isSuccess, message, dispatch]);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      username,
+      password,
+    };
+
+    dispatch(login(userData));
+  };
   return (
     <motion.div
       className="register__form"
@@ -34,34 +75,44 @@ function SignIn({ showSign, signToggle }) {
           </a>
         </div>
       </div>
-      <Form>
+      {/* form fields */}
+      <Form onSubmit={onSubmit}>
         <div className="px-4">
+          {/* Email field */}
           <Form.Group className="mb-3">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" required />
+            <Form.Label>username</Form.Label>
+            <Form.Control
+              name="username"
+              type="text"
+              value={username}
+              placeholder="Enter your username"
+              onChange={onChange}
+            />
           </Form.Group>
-
+          {/* password field */}
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <div className="d-flex align-items-center justify-content-center position-relative">
-              <Form.Control type={!show ? "password" : "text"} required />
+              <Form.Control
+                name="password"
+                type={!show ? "password" : "text"}
+                value={password}
+                placeholder="Enter your password"
+                onChange={onChange}
+              />
               <a href="#!" className="eye_icon" onClick={() => setShow(!show)}>
                 {!show ? <IoEyeOutline /> : <IoEyeOffOutline />}
               </a>
             </div>
           </Form.Group>
-        </div>
-
-        <div className="mt-4 text-primary text-center">
-          <a href="#!"> Forgot your password?</a>
-        </div>
-        <div className="text-center mt-5 border-top">
-          <button
-            type="submit"
-            className="btn-primary w-100 text-primary text-capitalize fw-bold py-3"
-          >
-            sign in
-          </button>
+          <div className="text-center mt-5 border-top">
+            <button
+              type="submit"
+              className="btn-primary w-100 text-primary text-capitalize fw-bold py-3"
+            >
+              Create an account
+            </button>
+          </div>
         </div>
       </Form>
     </motion.div>

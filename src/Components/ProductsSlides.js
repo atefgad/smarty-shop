@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,15 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/virtual";
 
-import { ProductCard } from "../Components";
+import { ProductCard } from ".";
 
-const Slider = () => {
-  const { products } = useSelector((state) => state.products);
-
-  const getProductsByRating = products.filter(
-    (product) => product.rating.rate > 3
-  );
-
+const ProductsSlides = ({ products }) => {
   return (
     <Swiper
       modules={[Virtual]}
@@ -47,7 +40,7 @@ const Slider = () => {
         },
       }}
     >
-      {getProductsByRating.map((product, index) => (
+      {products.map((product, index) => (
         <SwiperSlide key={index} virtualIndex={index}>
           <ProductCard product={product} />
         </SwiperSlide>
@@ -56,4 +49,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default ProductsSlides;

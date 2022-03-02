@@ -19,7 +19,7 @@ function Bannar() {
                 <h3 className="card__content__title text-bold">Up to 50%</h3>
                 <Link
                   className="card__content__btn btn btn-outline-light mt-2"
-                  to="/"
+                  to="/category/men's_clothing"
                 >
                   Shop Now!
                 </Link>
@@ -44,7 +44,7 @@ function Bannar() {
                 <h3 className="card__content__title text-bold">Up to 50%</h3>
                 <Link
                   className="card__content__btn btn btn-outline-primary mt-2"
-                  to="/"
+                  to="/category/women's_clothing"
                 >
                   Shop Now!
                 </Link>

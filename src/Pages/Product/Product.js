@@ -23,7 +23,12 @@ import "./Product.scss";
 // import Skeleton Components
 import Skeleton from "react-loading-skeleton";
 
-import { AddToCartBtn, Animated } from "../../Components";
+import {
+  AddToCartBtn,
+  Animated,
+  ProductsSlides,
+  SectionHead,
+} from "../../Components";
 
 import { addToCart } from "../../store/cartSlice";
 
@@ -53,6 +58,12 @@ function Product() {
     return product.id === parseInt(productId);
   });
 
+  const getProductsByCategory = products.filter((product) => {
+    return (
+      product.category === getProduct.category && product.id !== getProduct.id
+    );
+  });
+
   // check if isnt exist product show Error Page404
   if (!getProduct) return <Page404 />;
 
@@ -67,9 +78,9 @@ function Product() {
 
   return (
     <Animated>
-      <section className="product__page  position-relative  border-bottom mb-5">
+      <section className="product__page mb-5">
         <Container>
-          <Row>
+          <Row className="border-bottom shadow rounded-2 mt-5 mb-5">
             {/* Product content */}
             <Col lg={5} className="py-4">
               {/* 
@@ -103,7 +114,10 @@ function Product() {
             </Col>
             <Col lg={1}></Col>
             {/* Product Info */}
-            <Col lg={6} className="Product__info bg-light pt-5 ps-lg-5 pb-md-2">
+            <Col
+              lg={6}
+              className="Product__info bg-secondary pt-5 ps-lg-5 pb-md-2"
+            >
               <Link
                 to={`/category/${getProduct.category.replace(" ", "_")}`}
                 className="d-inline-block text-capitalize fw-bold text-muted mb-2"
@@ -178,6 +192,7 @@ function Product() {
 
               {/* Buttons Box*/}
               <div className="d-flex mt-4 mb-3">
+                {/* 
                 <input
                   className="form-control me-3"
                   type="number"
@@ -186,6 +201,18 @@ function Product() {
                   onChange={(e) => setQty(e.target.value)}
                   style={{ width: "5rem" }}
                 />
+                */}
+
+                <select
+                  className="form-select me-3"
+                  style={{ width: "5rem" }}
+                  onChange={(e) => setQty(e.target.value)}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+
                 {/* ADD TO CART[btn] */}
                 <AddToCartBtn
                   onClick={() =>
@@ -206,17 +233,23 @@ function Product() {
               */}
 
                 <button
-                  className="btn btn-outline-secondary d-block fs-4 fw-bold ms-3"
+                  className="btn btn-outline-secondary rounded-2 d-flex align-items-center justify-content-center ms-3"
+                  style={{ width: "5rem" }}
                   type="button"
                 >
-                  <IoHeartOutline />
+                  <IoHeartOutline className="fw-bold fs-2" />
                 </button>
               </div>
               <div className="my-4">
-                <p>{getProduct.description}</p>
+                <p className="text-muted">{getProduct.description}</p>
               </div>
             </Col>
           </Row>
+
+          <div className="bg-light border-top mb-5 mt-5 mt-md-3 pt-5">
+            <SectionHead title="You may also like" />
+            <ProductsSlides products={getProductsByCategory} />
+          </div>
         </Container>
       </section>
     </Animated>
