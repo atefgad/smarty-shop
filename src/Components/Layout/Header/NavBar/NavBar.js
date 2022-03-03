@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Navbar, Offcanvas } from "react-bootstrap";
 import "./NavBar.scss";
@@ -21,14 +21,23 @@ import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
 import { AuthModal, SignIn, SignUp } from "../../..";
+import { cartTotalPrice } from "../../../../store/cartSlice";
 
 export default function NavBar() {
   const cart = useSelector((state) => state.cart.cartItems);
+  const shoppingCart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const [modalShow, setModalShow] = useState(false);
   const [signToggle, setSignToggle] = useState(true);
+
+  useEffect(() => {
+    dispatch(cartTotalPrice());
+  }, [dispatch, shoppingCart]);
 
   // Cart
   const ShowCart = (
@@ -77,7 +86,9 @@ export default function NavBar() {
           <div className="offcanvas-footer d-block border-top pt-4 px-4 mb-2">
             <div className="d-flex justify-content-between mb-4">
               <strong>subtotal:</strong>
-              <span className="h6 mb-0">$855.99</span>
+              <span className="h6 mb-0">
+                ${shoppingCart.cartTotalAmount.toFixed(2)}
+              </span>
             </div>
             <a className="btn btn-primary d-block w-100">
               <IoCardOutline /> Checkout
