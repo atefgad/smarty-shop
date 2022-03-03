@@ -20,8 +20,10 @@ function NavMenu({ showMenu, setShowMenu }) {
 
         {/* offcanvas-body */}
         <Offcanvas.Body>
-          <Nav className="d-none d-sm-block ml-0 pl-0">
-            <MenuList />
+          <Nav className="sidebar__nav ps-2 pt-2">
+            <ul>
+              <MenuList setCloseMenu={setShowMenu} />
+            </ul>
           </Nav>
         </Offcanvas.Body>
         {/* offcanvas-body:END */}
@@ -29,7 +31,7 @@ function NavMenu({ showMenu, setShowMenu }) {
         {/* offcanvas-footer */}
         <div className="offcanvas-footer border-top">
           <a
-            className="btn btn-translucent-primary d-block w-100"
+            className="btn btn-outline-primary d-block w-100"
             href="#modal-signin"
             data-bs-toggle="modal"
             data-view="#modal-signin-view"

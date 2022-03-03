@@ -58,9 +58,15 @@ export default function NavBar() {
         <Offcanvas.Body>
           <div className="pg-2">
             {cart.length > 0 ? (
-              cart.map((item) => <CartListItem cartItem={item} key={item.id} />)
+              cart.map((item) => (
+                <CartListItem
+                  setCloseCart={setShowCart}
+                  cartItem={item}
+                  key={item.id}
+                />
+              ))
             ) : (
-              <NoCartItems setShowCart={setShowCart} />
+              <NoCartItems setCloseCart={setShowCart} />
             )}
           </div>
         </Offcanvas.Body>
@@ -89,7 +95,7 @@ export default function NavBar() {
       {/* container */}
       <div className="container px-xl-3">
         <Button
-          className="navbar-toggler btn__toggle border-0 ms-n2 me-4"
+          className="navbar-toggler btn__toggle border-0 text-black ms-n2 me-4"
           onClick={() => setShowMenu(true)}
         >
           <IoListOutline style={{ fontSize: "1.8rem" }} />
@@ -100,7 +106,7 @@ export default function NavBar() {
           to="/"
         >
           <img src={Logo} title="smarty shop" alt="smarty shop logo" />
-          <small>marty</small>
+          {/*<small>marty</small>*/}
           <span className="sub-logo text-primary fw-bold">hop</span>
         </Link>
 

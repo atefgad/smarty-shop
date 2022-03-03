@@ -5,8 +5,7 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    // border: 1px solid rgba(0, 0, 0, .085);
-    border: none !important;
+    border: 1px solid rgba(0, 0, 0, .085);
     border-radius: 1.5rem !important;
     overflow: hidden;
 
@@ -16,6 +15,7 @@
         position: relative;
         overflow: hidden;
         width: 150px;
+        padding: 20px 0;
         min-height: 200px;
         max-height: 200px;
         z-index: 1;
@@ -23,7 +23,7 @@
 }
 
 .card-product {
-    max-width: 20rem;
+    // max-width: 20rem;
     margin-right: auto;
     margin-left: auto;
     align-items: center;
@@ -40,6 +40,8 @@
             color: #797a95;
             vertical-align: middle;
             text-decoration: none;
+            display: inline-block;
+
         }
     }
 
@@ -48,11 +50,18 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        background-color: transparent !important;
         padding-top: 0.5rem;
         padding-right: 1.25rem;
         padding-bottom: 1.375rem;
         padding-left: 1.25rem;
         border: 0;
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
     }
 
     .btn-wishlist {
@@ -86,4 +95,13 @@
 .card.card-active {
     border-color: rgba(118, 109, 244, .35) !important;
     box-shadow: 0.1875rem 0.1875rem 0.625rem -0.125rem rgba(0, 0, 0, 0.25) !important;
+}
+
+
+.ellipsis {
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

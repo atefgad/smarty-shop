@@ -46,17 +46,22 @@ function ProductCard({ product }) {
         </Link>
         <div className="card-body">
           <Link
-            className="meta-link fs-xs mb-1"
+            className="meta-link fs-xs mb-2"
             to={`/category/${product.category.replace(" ", "_")}`}
           >
             {product.category}
           </Link>
-          <h3 className="fs-md fw-medium mb-2">
-            <Link className="meta-link" to={`/product/${product.id}`}>
-              {` ${product.title.substr(0, 30)} ...`}
+          <h3 className="fs-6 fw-normal mb-2 ellipsis">
+            <Link
+              className="meta-link text-muted"
+              to={`/product/${product.id}`}
+            >
+              {product.title}
+              {/*` ${product.title.substr(0, 30)} ...`*/}
             </Link>
           </h3>
-          <span className="text-heading fw-semibold">${product.price}</span>
+          {/* <del className="fs-sm text-muted me-1">$130.00</del> */}
+          <span className="text-heading fw-bold">${product.price}</span>
         </div>
         <div className="card-footer">
           <div className="star-rating mt-n1">
@@ -68,7 +73,7 @@ function ProductCard({ product }) {
           <IoStarOutline />
         */}
             <IoStar className="active me-1" />
-            {product.rating.rate} <small>({product.rating.count})</small>
+            {product.rating.rate} <small> ({product.rating.count})</small>
           </div>
           <div className="d-flex align-items-center">
             <OverlayTrigger

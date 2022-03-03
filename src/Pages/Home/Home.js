@@ -41,9 +41,6 @@ function Home({ isLoading }) {
 
           <Brands />
         </section>
-        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
-          <SectionHead title="Reorder List" linkPath="/" />
-        </section>
       </main>
     </Animated>
   );

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeCartItem } from "../../store/cartSlice";
 
-function CartListItem({ cartItem }) {
+function CartListItem({ cartItem, setCloseCart }) {
   const dispatch = useDispatch();
   const [quantity, setquantity] = useState(cartItem.quantity);
 
@@ -14,7 +14,11 @@ function CartListItem({ cartItem }) {
   };
   return (
     <div className="d-flex align-items-center pe-2 mb-3">
-      <Link to={`/product/${cartItem.id}`} className="d-block flex-shrink-0">
+      <Link
+        to={`/product/${cartItem.id}`}
+        className="d-block flex-shrink-0"
+        onClick={() => setCloseCart(false)}
+      >
         <img
           src={cartItem.image}
           alt={cartItem.title}
@@ -26,7 +30,10 @@ function CartListItem({ cartItem }) {
       <div className="w-100 ps-2 ms-1">
         <div className="d-flex align-items-center justify-content-between">
           <div className="me-3">
-            <h4 className="nav-heading fs-md mb-1">
+            <h4
+              className="nav-heading fs-md mb-1"
+              onClick={() => setCloseCart(false)}
+            >
               <Link to={`/product/${cartItem.id}`}>{` ${cartItem.title.substr(
                 0,
                 25

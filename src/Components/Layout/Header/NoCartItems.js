@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EmptyBasket from "../../../Assets/images/icons/empty-basket.gif";
 
-function NoCartItems({ setShowCart }) {
+function NoCartItems({ setCloseCart }) {
   return (
     <div className="d-flex flex-column align-items-center justify-content-between">
       <div className="mt-md-7 mt-sm-5">
@@ -13,7 +13,7 @@ function NoCartItems({ setShowCart }) {
       <Link
         to="/"
         className="btn btn-primary btn-lg rounded-0 mt-3"
-        onClick={() => setShowCart(false)}
+        onClick={() => setCloseCart(false)}
       >
         Start Shopping!
       </Link>
