@@ -3,9 +3,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { ProductCard, Animated } from "../../Components";
+import "./Category.scss";
+
+import { ProductCard, Animated, PageTitle } from "../../Components";
 
 import { Page404 } from "../../Pages";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Category() {
   const { products } = useSelector((state) => state.products);
@@ -15,24 +18,41 @@ function Category() {
     (product) => product.category.replace(" ", "_") === catName
   );
 
-  // if (Object.values(catFilter).length === 0) return <Page404 />;
+  if (Object.values(catFilter).length === 0) return <Page404 />;
 
   return (
     <Animated>
-      <div className="mt-4">
+      <PageTitle name={catName.replace("_", " ")} />
+      <div className="category__page">
         <Container>
-          <Row>
-            <Col md={3} className="">
-              <h2>Left SIde</h2>
+          <Row className="d-flex align-items-center justify-content-center">
+            {/*
+            <Col md={4} className="bg-light shadow rounded-2">
+              <aside></aside>
             </Col>
-            <Col md={9} className="">
-              <h2>{catName.replace("_", " ")}</h2>
-
-              <Row className="d-flex justify-content-start align-items-end">
-                {catFilter.map((product) => (
-                  <Col lg={4} md={6} className="mb-5" key={product.id}>
+          */}
+            <Col md={12} className="">
+              <Row className="">
+                {catFilter.map((product, i) => (
+                  <motion.div
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                      },
+                      visible: (i) => ({
+                        opacity: 1,
+                        transition: {
+                          delay: i * 0.5,
+                        },
+                      }),
+                    }}
+                    inital="hidden"
+                    animate="visible"
+                    className="col-lg-4 col-md-6 mb-5"
+                    key={product.id}
+                  >
                     <ProductCard product={product} />
-                  </Col>
+                  </motion.div>
                 ))}
               </Row>
             </Col>

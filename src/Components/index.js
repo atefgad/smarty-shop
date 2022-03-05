@@ -19,11 +19,14 @@ import CategoryList from "./CategoryList/CategoryList";
 import HeroSection from "./HeroSection/HeroSection";
 import Loading from "./Loading/Loading";
 import ProductCard from "./ProductCard/ProductCard";
+import PageTitle from "./PageTitle/PageTitle";
 import SectionHead from "./SectionTitle/SectionHead";
 import ProductsSlides from "./Swiper/ProductsSlides";
 import Animated from "./Animated/Animated";
 import Bannar from "./Bannar/Bannar";
 import Brands from "./Brands/Brands";
+
+import ScrollToTop from "./ScrollToTop";
 
 export {
   //Layout
@@ -45,9 +48,11 @@ export {
   HeroSection,
   Loading,
   ProductCard,
+  PageTitle,
   SectionHead,
   ProductsSlides,
   Animated,
+  ScrollToTop,
   Bannar,
   Brands,
 };

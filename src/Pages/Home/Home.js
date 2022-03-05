@@ -25,20 +25,25 @@ function Home({ isLoading }) {
     <Animated>
       <main className="page__content">
         <HeroSection />
+
         <CategoryList />
-        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
+
+        <section className="container pt-5 mt-2 mb-6 mt-md-0 pt-md-6">
           <SectionHead title="Trending products" />
           <ProductsSlides products={getProductsByRating} />
         </section>
 
-        <Bannar />
-        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
-          <SectionHead title="Electronics products" linkPath="/" />
+        <section className="">
+          <Bannar />
+        </section>
+
+        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6">
+          <SectionHead title="Electronics" linkPath="/category/electronics" />
           <ProductsSlides products={getProductsByCategory} />
         </section>
-        <section className="container pt-5 mt-5 mb-5 mt-md-0 pt-md-6 pt-lg-7">
-          <SectionHead title="The best Brands" linkPath="/" />
 
+        <section className="container pt-5 mt-5 mb-5 mt-md-0">
+          <SectionHead title="The best Brands" linkPath="/" />
           <Brands />
         </section>
       </main>

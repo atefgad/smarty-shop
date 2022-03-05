@@ -6,7 +6,7 @@ import "./SectionHead.scss";
 
 function SectionHead({ title, linkTitle = "view all", linkPath = null }) {
   return (
-    <div className="section-head d-flex align-items-center justify-content-between mb-4 pb-2">
+    <div className="section-head d-flex align-items-center justify-content-between mb-4 mb-sm-5  pb-2">
       <h3 className="h3 mb-sm-0 section-title">{title}</h3>
       {linkPath ? (
         <Link

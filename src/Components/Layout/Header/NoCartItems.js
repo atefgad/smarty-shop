@@ -13,7 +13,7 @@ function NoCartItems({ setCloseCart }) {
       <Link
         to="/"
         className="btn btn-primary btn-lg rounded-0 mt-3"
-        onClick={() => setCloseCart(false)}
+        onClick={setCloseCart ? () => setCloseCart(false) : null}
       >
         Start Shopping!
       </Link>

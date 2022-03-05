@@ -22,8 +22,8 @@ const cartSlice = createSlice({
       );
 
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].quantity += +action.payload.quantity
-          ? +action.payload.quantity
+        state.cartItems[itemIndex].quantity = parseInt(action.payload.quantity)
+          ? parseInt(action.payload.quantity)
           : 1;
 
         toast.info(
@@ -32,13 +32,14 @@ const cartSlice = createSlice({
       } else {
         const productData = {
           ...action.payload,
-          quantity: +action.payload.quantity ? +action.payload.quantity : 1,
+          quantity: parseInt(action.payload.quantity)
+            ? parseInt(action.payload.quantity)
+            : 1,
         };
         state.cartItems.push(productData);
 
         toast.success(`${action.payload.title.substr(0, 25)}... added to cart`);
       }
-
       // localStorage.setItem("cart", JSON.stringify(state.cartItems));
       setLocalStorage("cartItems", state.cartItems);
     },

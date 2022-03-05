@@ -1,0 +1,19 @@
+.checkout__page {
+    margin-top: -6.5rem;
+
+    .content {
+        @media (min-width: 992px) {
+
+            padding-left: 0.9375rem;
+            padding-right: 2.5rem;
+        }
+
+    }
+
+    .order__sidebar {
+        .cart__summary__items {
+            max-height: 350px;
+            overflow-y: scroll;
+        }
+    }
+}

@@ -13,8 +13,8 @@ function Bannar() {
       <Container>
         <Row>
           <Col md={6}>
-            <div className="bannar__card card-shadow position-relative mb-4 me-2 bg-primary text-light rounded-3">
-              <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 text-center text-sm-start">
+            <div className="bannar__card card-shadow position-relative mb-4  me-2 bg-primary text-light rounded-3">
+              <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 text-lg-start text-sm-start">
                 <h5 className="text-muted">Men's Fashion</h5>
                 <h3 className="card__content__title text-bold">Up to 50%</h3>
                 <Link
@@ -33,13 +33,7 @@ function Bannar() {
           </Col>
           <Col md={6}>
             <div className="bannar__card card-shadow position-relative mb-4 me-2 bg-secondary text-black rounded-3">
-              <img
-                className="card__image position-absolute bottom-0"
-                src={fashionWomen}
-                alt="fashion Women"
-                style={{ left: "-60px" }}
-              />
-              <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 d-lg-flex justify-lg-content-center flex-lg-column align-items-lg-end text-lg-end text-sm-start">
+              <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 d-lg-flex justify-lg-content-center flex-lg-column align-items-lg-end text-lg-end text-sm-end text-xs-end">
                 <h5 className="text-muted">Women's Fashion</h5>
                 <h3 className="card__content__title text-bold">Up to 50%</h3>
                 <Link
@@ -49,6 +43,11 @@ function Bannar() {
                   Shop Now!
                 </Link>
               </div>
+              <img
+                className="card__image position-absolute bottom-0"
+                src={fashionWomen}
+                alt="fashion Women"
+              />
             </div>
           </Col>
         </Row>

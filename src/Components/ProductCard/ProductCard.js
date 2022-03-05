@@ -12,21 +12,7 @@ import { BsCartPlus } from "react-icons/bs";
 // import Styles
 import "./ProductCard.scss";
 
-// import Skeleton Components
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-
 import { addToCart } from "../../store/cartSlice";
-
-const Loading = (
-  <div>
-    <div className="col-md-12">
-      <Skeleton height={40} />
-    </div>
-    <div className="col-md-12">
-      <Skeleton height={70} count={2} />
-    </div>
-  </div>
-);
 
 function ProductCard({ product }) {
   const cart = useSelector((state) => state.cart);

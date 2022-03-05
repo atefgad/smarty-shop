@@ -17,7 +17,7 @@ function Topbar() {
             Support
           </span>
           <a className="me-2" href="tel:+9561527856">
-            +910-784-8015
+            +310-524-6099
           </a>
         </div>
         <div className="d-flex text-md-end ms-md-auto">

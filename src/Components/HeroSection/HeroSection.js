@@ -12,6 +12,8 @@ import { MainButton } from "../../Components";
 function HeroSection() {
   // const location = useLocation();
   // console.log("location =>", location);
+  // animations
+
   return (
     <div className="hero__section position-relative gradient-3 pt-5 pt-lg-6 pb-lg-7 mb-7">
       <Container>

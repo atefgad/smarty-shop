@@ -1,34 +1,74 @@
 import React from "react";
-import { IoHomeOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
-const items = [
-  { name: "home", to: "/", icon: <IoHomeOutline /> },
-  { name: "about", to: "/about", icon: <IoHomeOutline /> },
-  { name: "shop", to: "/shop", icon: <IoHomeOutline /> },
+//import Icons
+import {
+  IoHomeOutline,
+  IoShirtOutline,
+  IoBasketOutline,
+} from "react-icons/io5";
+import { RiCustomerService2Line } from "react-icons/ri";
+import { BsSmartwatch } from "react-icons/bs";
+import { AnimatePresence, motion } from "framer-motion";
+
+const links = [
+  { name: "home", path: "/", icon: <IoHomeOutline /> },
+  {
+    name: "men fashion",
+    path: "/category/men's_clothing",
+    icon: <IoShirtOutline />,
+  },
+  {
+    name: "electronics",
+    path: "/category/electronics",
+    icon: <BsSmartwatch />,
+  },
+  { name: "shop", path: "/shop", icon: <IoBasketOutline /> },
+  {
+    name: "customer service",
+    path: "/customer-service",
+    icon: <RiCustomerService2Line />,
+  },
 ];
 function MenuList({ setCloseMenu }) {
   return (
     <React.Fragment>
-      {items.map((item) => (
-        <li key={`key#${item.name}`}>
-          {setCloseMenu ? (
-            <NavLink
-              to={item.to}
-              className="nav-link"
-              onClick={() => setCloseMenu(false)}
-            >
-              {item.name}
-              <span className="nav-link-icon">{item.icon}</span>
-            </NavLink>
-          ) : (
-            <NavLink to={item.to} className="nav-link">
-              {item.icon}
-              {item.name}
-            </NavLink>
-          )}
-        </li>
-      ))}
+      <AnimatePresence>
+        {links.map((link, i) => (
+          <motion.li
+            variants={{
+              hidden: {
+                opacity: 0,
+              },
+              visible: (i) => ({
+                opacity: 1,
+                transition: {
+                  delay: i * 0.05,
+                },
+              }),
+            }}
+            inital="hidden"
+            animate="visible"
+            key={`key#${link.name}`}
+          >
+            {setCloseMenu ? (
+              <NavLink
+                to={link.path}
+                className="nav-link rounded-2"
+                onClick={() => setCloseMenu(false)}
+              >
+                {link.name}
+                <span className="nav-link-icon">{link.icon}</span>
+              </NavLink>
+            ) : (
+              <NavLink to={link.path} className="nav-link">
+                <span className="me-1">{link.icon}</span>
+                {link.name}
+              </NavLink>
+            )}
+          </motion.li>
+        ))}
+      </AnimatePresence>
     </React.Fragment>
   );
 }

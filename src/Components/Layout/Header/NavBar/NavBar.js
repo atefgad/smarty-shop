@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Navbar, Offcanvas } from "react-bootstrap";
@@ -21,23 +21,16 @@ import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
 import { AuthModal, SignIn, SignUp } from "../../..";
-import { cartTotalPrice } from "../../../../store/cartSlice";
 
 export default function NavBar() {
   const cart = useSelector((state) => state.cart.cartItems);
   const shoppingCart = useSelector((state) => state.cart);
-
-  const dispatch = useDispatch();
 
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const [modalShow, setModalShow] = useState(false);
   const [signToggle, setSignToggle] = useState(true);
-
-  useEffect(() => {
-    dispatch(cartTotalPrice());
-  }, [dispatch, shoppingCart]);
 
   // Cart
   const ShowCart = (
@@ -90,9 +83,13 @@ export default function NavBar() {
                 ${shoppingCart.cartTotalAmount.toFixed(2)}
               </span>
             </div>
-            <a className="btn btn-primary d-block w-100">
+            <Link
+              className="btn btn-primary d-block w-100"
+              to="/checkout"
+              onClick={() => setShowCart(false)}
+            >
               <IoCardOutline /> Checkout
-            </a>
+            </Link>
           </div>
         ) : null}
         {/* offcanvas-footer:END */}
@@ -104,7 +101,7 @@ export default function NavBar() {
   return (
     <Navbar bg="light" expand="lg" className="navbar-shadow">
       {/* container */}
-      <div className="container px-xl-3">
+      <div className="container px-xl-3 flex-sm-nowrap">
         <Button
           className="navbar-toggler btn__toggle border-0 text-black ms-n2 me-4"
           onClick={() => setShowMenu(true)}

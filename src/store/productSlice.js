@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// import API_URL from "../data/products.json";
+const API_URL = "https://fakestoreapi.com/products";
+
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const response = await fetch("https://fakestoreapi.com/products");
+      const response = await fetch(API_URL);
       const data = await response.json();
 
       return data;

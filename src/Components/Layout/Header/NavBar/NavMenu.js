@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, NavDropdown, Offcanvas } from "react-bootstrap";
+import { Nav, Offcanvas } from "react-bootstrap";
 import MenuList from "../../../MenuList/MenuList";
 
 function NavMenu({ showMenu, setShowMenu }) {
@@ -20,7 +20,7 @@ function NavMenu({ showMenu, setShowMenu }) {
 
         {/* offcanvas-body */}
         <Offcanvas.Body>
-          <Nav className="sidebar__nav ps-2 pt-2">
+          <Nav className="sidebar__nav pt-2">
             <ul>
               <MenuList setCloseMenu={setShowMenu} />
             </ul>

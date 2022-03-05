@@ -108,6 +108,7 @@
         .nav-link {
             position: relative;
             font-size: 1.2rem;
+            text-transform: capitalize;
             padding: 0;
 
             &::after {
@@ -155,15 +156,19 @@
         width: 100%;
         background-color: $main-color;
         color: #fff;
+        text-transform: capitalize;
         margin-bottom: 10px;
         padding-left: 2rem !important;
+        transition: .3s ease-in-out;
 
         &:hover {
-            color: #fdfdfd !important;
+            color: #fff !important;
+            font-weight: bold;
+            letter-spacing: 1.5px;
 
             & .nav-link-icon {
                 font-size: 5rem;
-                bottom: 7px;
+                bottom: 6px;
             }
         }
 

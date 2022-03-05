@@ -47,6 +47,11 @@
         font-size: .9rem !important;
         width: 100%;
     }
+
+    @media (max-width: 415px) and (min-width:300px) {
+        font-size: .9rem !important;
+        width: 100%;
+    }
 }
 
 .cart-button span.add-to-cart {

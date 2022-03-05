@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 // import Bootstrap Styles
 import { Col, Container, Image, Row } from "react-bootstrap";
 
@@ -20,9 +21,6 @@ import { Page404 } from "../../Pages";
 // import Styles
 import "./Product.scss";
 
-// import Skeleton Components
-import Skeleton from "react-loading-skeleton";
-
 import {
   AddToCartBtn,
   Animated,
@@ -31,17 +29,6 @@ import {
 } from "../../Components";
 
 import { addToCart } from "../../store/cartSlice";
-
-const Loading = (
-  <div>
-    <div className="col-md-12">
-      <Skeleton height={40} />
-    </div>
-    <div className="col-md-12">
-      <Skeleton height={70} count={2} />
-    </div>
-  </div>
-);
 
 function Product() {
   const dispatch = useDispatch();
@@ -83,18 +70,6 @@ function Product() {
           <Row className="border-bottom shadow rounded-2 mt-5 mb-5">
             {/* Product content */}
             <Col lg={5} className="py-4">
-              {/* 
-            <Breadcrumb>
-              <Breadcrumb.Item>
-                <Link to="/">Home</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <Link to="/shop">Shop</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>Data</Breadcrumb.Item>
-            </Breadcrumb>
-            <h1 className="Product__Title mb-3 pb-4">{getProduct.title}</h1>
-          */}
               <div className="product__Img_preview text-center pt-5">
                 <Image src={getProduct.image} fluid alt={getProduct.title} />
               </div>
@@ -191,18 +166,8 @@ function Product() {
               </div>
 
               {/* Buttons Box*/}
-              <div className="d-flex mt-4 mb-3">
-                {/* 
-                <input
-                  className="form-control me-3"
-                  type="number"
-                  min="1"
-                  value={qty}
-                  onChange={(e) => setQty(e.target.value)}
-                  style={{ width: "5rem" }}
-                />
-                */}
-
+              <div className="p-sm-fixed d-flex mt-4 mb-3">
+                {/* select Qty Box*/}
                 <select
                   className="form-select me-3"
                   style={{ width: "5rem" }}
@@ -212,7 +177,6 @@ function Product() {
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-
                 {/* ADD TO CART[btn] */}
                 <AddToCartBtn
                   onClick={() =>
@@ -222,16 +186,7 @@ function Product() {
                   clicked={Clicked}
                   className="btn-primary fw-bold text-light btn-lg d-block w-100"
                 />
-
-                {/* 
-              
-              <button className="btn btn-primary  fw-bold text-light btn-lg d-block w-100">
-                <IoCartOutline className="me-1" />
-                Add to Cart
-              </button>
-              
-              */}
-
+                {/* ADD TO Wishlist[btn] */}
                 <button
                   className="btn btn-outline-secondary rounded-2 d-flex align-items-center justify-content-center ms-3"
                   style={{ width: "5rem" }}
