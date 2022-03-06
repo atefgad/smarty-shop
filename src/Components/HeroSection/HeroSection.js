@@ -8,6 +8,7 @@ import girl from "../../Assets/images/girl.png";
 
 import "./HeroSection.scss";
 import { MainButton } from "../../Components";
+import { motion } from "framer-motion";
 
 function HeroSection() {
   // const location = useLocation();
@@ -19,7 +20,17 @@ function HeroSection() {
       <Container>
         {/* heroSection Main-Slider */}
         <Row className="d-flex align-items-center justify-content-center">
-          <Col lg={4} className="offset-1 mb-sm-5">
+          <motion.div
+            className="col-lg-4 offset-1 mb-sm-5"
+            initial={{
+              opacity: 0,
+              translateX: -70,
+              translateY: -70,
+            }}
+            animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
             <h4 className="text-light text-capitalize">
               <Link to="/category/women's_clothing">women's fashion</Link>
             </h4>
@@ -32,11 +43,22 @@ function HeroSection() {
             </a>
             */}
             <MainButton title="Shop Now" to="/category/women's_clothing" />
-          </Col>
+          </motion.div>
           {/* Hero Image */}
           <Col lg={6} className="order-sm-1">
             <div className="imgContainer">
-              <img src={girl} alt="hero" />
+              <motion.img
+                src={girl}
+                alt="hero"
+                initial={{
+                  opacity: 0,
+                  translateX: 80,
+                  translateY: 80,
+                }}
+                animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+              />
               <svg
                 className="imgBgShape"
                 viewBox="0 0 200 200"

@@ -36,20 +36,14 @@ function MenuList({ setCloseMenu }) {
       <AnimatePresence>
         {links.map((link, i) => (
           <motion.li
-            variants={{
-              hidden: {
-                opacity: 0,
-              },
-              visible: (i) => ({
-                opacity: 1,
-                transition: {
-                  delay: i * 0.05,
-                },
-              }),
-            }}
-            inital="hidden"
-            animate="visible"
             key={`key#${link.name}`}
+            initial={{
+              opacity: 0,
+              translateX: -50,
+              translateY: -50,
+            }}
+            animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+            transition={{ duration: 0.3, delay: i * 0.3 }}
           >
             {setCloseMenu ? (
               <NavLink

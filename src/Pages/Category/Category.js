@@ -35,21 +35,15 @@ function Category() {
               <Row className="">
                 {catFilter.map((product, i) => (
                   <motion.div
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                      },
-                      visible: (i) => ({
-                        opacity: 1,
-                        transition: {
-                          delay: i * 0.5,
-                        },
-                      }),
-                    }}
-                    inital="hidden"
-                    animate="visible"
                     className="col-lg-4 col-md-6 mb-5"
                     key={product.id}
+                    initial={{
+                      opacity: 0,
+                      translateX: i % 2 === 0 ? -50 : 50,
+                      translateY: -50,
+                    }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.2 }}
                   >
                     <ProductCard product={product} />
                   </motion.div>

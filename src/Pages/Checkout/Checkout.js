@@ -5,16 +5,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import "./Checkout.scss";
 
 // import Components
-import {
-  ProductCard,
-  Animated,
-  PageTitle,
-  CartListItem,
-} from "../../Components";
+import { Animated, PageTitle, CartListItem } from "../../Components";
 
 import { Page404 } from "..";
 import { useSelector } from "react-redux";
 import NoCartItems from "../../Components/Layout/Header/NoCartItems";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Checkout() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
@@ -49,8 +45,19 @@ function Checkout() {
               {cartItems.length > 0 ? (
                 <React.Fragment>
                   <div className="cart__summary__items pt-1">
-                    {cartItems.map((item) => (
-                      <CartListItem cartItem={item} key={item.id} />
+                    {cartItems.map((item, i) => (
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                          translateX: 50,
+                          translateY: 50,
+                        }}
+                        animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                        exit={{ opacity: 0, duration: 0.5 }}
+                        transition={{ duration: 0.3, delay: i * 0.3 }}
+                      >
+                        <CartListItem cartItem={item} key={item.id} />
+                      </motion.div>
                     ))}
                   </div>
                   <hr className="mt-2 mb-4" />

@@ -21,6 +21,7 @@ import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
 import { AuthModal, SignIn, SignUp } from "../../..";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function NavBar() {
   const cart = useSelector((state) => state.cart.cartItems);
@@ -59,17 +60,27 @@ export default function NavBar() {
         {/* offcanvas-body */}
         <Offcanvas.Body>
           <div className="pg-2">
-            {cart.length > 0 ? (
-              cart.map((item) => (
-                <CartListItem
-                  setCloseCart={setShowCart}
-                  cartItem={item}
-                  key={item.id}
-                />
-              ))
-            ) : (
-              <NoCartItems setCloseCart={setShowCart} />
-            )}
+            <AnimatePresence>
+              {cart.length > 0 ? (
+                cart.map((item, i) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{
+                      opacity: 0,
+                      translateX: 50,
+                      translateY: 50,
+                    }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    exit={{ translateX: -300, opacity: 0, duration: 0.2 }}
+                    transition={{ duration: 0.3, delay: i * 0.3 }}
+                  >
+                    <CartListItem setCloseCart={setShowCart} cartItem={item} />
+                  </motion.div>
+                ))
+              ) : (
+                <NoCartItems setCloseCart={setShowCart} />
+              )}
+            </AnimatePresence>
           </div>
         </Offcanvas.Body>
         {/* offcanvas-body:END */}

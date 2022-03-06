@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { IoGlassesOutline, IoHeadsetOutline, IoShirtOutline, IoWomanOutline } from "react-icons/io5";
+import {
+  IoGlassesOutline,
+  IoHeadsetOutline,
+  IoShirtOutline,
+} from "react-icons/io5";
 
 import "./CategoryList.scss";
 

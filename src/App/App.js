@@ -46,16 +46,17 @@ function App() {
       {isLoading ? (
         <Loading />
       ) : (
-        <ScrollToTop>
-          <motion.div
-            variants={animations}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="app__container"
-          >
-            <Header />
-            <AnimatePresence exitBeforeEnter>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <ScrollToTop>
+            <motion.div
+              variants={animations}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="app__container"
+            >
+              <Header />
+
               <Routes key={location.pathname} location={location}>
                 <Route
                   index
@@ -68,22 +69,23 @@ function App() {
                 <Route path="product/:productId" element={<Product />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
-            </AnimatePresence>
-            <Footer />
-            {/* ReactToastify */}
-            <ToastContainer
-              position="top-left"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </motion.div>
-        </ScrollToTop>
+
+              <Footer />
+              {/* ReactToastify */}
+              <ToastContainer
+                position="top-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+            </motion.div>
+          </ScrollToTop>
+        </AnimatePresence>
       )}
     </React.Fragment>
   );
