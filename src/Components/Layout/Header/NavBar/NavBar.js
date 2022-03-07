@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Navbar, Offcanvas } from "react-bootstrap";
+import { Button, Dropdown, Navbar } from "react-bootstrap";
 import "./NavBar.scss";
 import Logo from "../../../../Assets/images/logo.png";
 
@@ -11,21 +11,22 @@ import {
   IoCartOutline,
   IoPersonOutline,
   IoListOutline,
-  IoCardOutline,
 } from "react-icons/io5";
 
-import CartListItem from "../../../CartListItem/CartListItem";
-
-import NoCartItems from "../NoCartItems";
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
 import { AuthModal, SignIn, SignUp } from "../../..";
-import { AnimatePresence, motion } from "framer-motion";
+import { logout } from "../../../../store/authSlice";
+import { toast } from "react-toastify";
+
+import avatar from "../../../../Assets/images/avatar.svg";
+import Cart from "../Cart";
 
 export default function NavBar() {
-  const cart = useSelector((state) => state.cart.cartItems);
-  const shoppingCart = useSelector((state) => state.cart);
+  const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -33,81 +34,12 @@ export default function NavBar() {
   const [modalShow, setModalShow] = useState(false);
   const [signToggle, setSignToggle] = useState(true);
 
-  // Cart
-  const ShowCart = (
-    <React.Fragment>
-      {/* primary Menu_SideBar offcanvas offcanvas-collapse */}
-      <Offcanvas
-        className="order-lg-2"
-        show={showCart}
-        onHide={() => setShowCart(false)}
-        placement="end"
-      >
-        {/* offcanvas-header */}
-        <Offcanvas.Header closeButton className="navbar-shadow">
-          <Offcanvas.Title className="mt-1 mb-0 position-relative d-flex align-items-center justify-content-between">
-            {cart.length > 0 ? (
-              <span className="navbar-tool-badge position-absolute top-0 start-0 translate-middle badge rounded-pill bg-primary">
-                {cart.length}
-              </span>
-            ) : null}
-            <IoCartOutline className="me-1" />
-            shopping cart
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        {/* offcanvas-header:END */}
-
-        {/* offcanvas-body */}
-        <Offcanvas.Body>
-          <div className="pg-2">
-            <AnimatePresence>
-              {cart.length > 0 ? (
-                cart.map((item, i) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{
-                      opacity: 0,
-                      translateX: 50,
-                      translateY: 50,
-                    }}
-                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-                    exit={{ translateX: -300, opacity: 0, duration: 0.2 }}
-                    transition={{ duration: 0.3, delay: i * 0.3 }}
-                  >
-                    <CartListItem setCloseCart={setShowCart} cartItem={item} />
-                  </motion.div>
-                ))
-              ) : (
-                <NoCartItems setCloseCart={setShowCart} />
-              )}
-            </AnimatePresence>
-          </div>
-        </Offcanvas.Body>
-        {/* offcanvas-body:END */}
-
-        {/* offcanvas-footer */}
-        {cart.length > 0 ? (
-          <div className="offcanvas-footer d-block border-top pt-4 px-4 mb-2">
-            <div className="d-flex justify-content-between mb-4">
-              <strong>subtotal:</strong>
-              <span className="h6 mb-0">
-                ${shoppingCart.cartTotalAmount.toFixed(2)}
-              </span>
-            </div>
-            <Link
-              className="btn btn-primary d-block w-100"
-              to="/checkout"
-              onClick={() => setShowCart(false)}
-            >
-              <IoCardOutline /> Checkout
-            </Link>
-          </div>
-        ) : null}
-        {/* offcanvas-footer:END */}
-      </Offcanvas>
-      {/* primary Menu_SideBar:END */}
-    </React.Fragment>
-  );
+  const handleLogout = () => {
+    setTimeout(() => {
+      dispatch(logout);
+      toast.info("logout successful!");
+    }, [2000]);
+  };
 
   return (
     <Navbar bg="light" expand="lg" className="navbar-shadow">
@@ -151,22 +83,53 @@ export default function NavBar() {
               onClick={() => setShowCart(true)}
             >
               <IoCartOutline />
-              {cart.length > 0 ? (
-                <span className="navbar-tool-badge">{cart.length}</span>
+              {cartItems.length > 0 ? (
+                <span className="navbar-tool-badge">{cartItems.length}</span>
               ) : (
                 <span className="navbar-tool-badge">0</span>
               )}
             </a>
           </div>
-          <div className="border-start ms-2" style={{ height: 30 }}></div>
-          <div className="navbar-tool ms-2 d-sm-flex">
-            <a
-              className="navbar-tool-icon-box "
-              href="#!"
-              onClick={() => setModalShow(true)}
-            >
-              <IoPersonOutline /> <span className="fw-bold">Login</span>
-            </a>
+          <div className="border-start ms-3 ps-2" style={{ height: 30 }}></div>
+
+          <div className="navbar-tool ms-1 d-sm-flex">
+            {!isLoggedIn ? (
+              <a
+                className="navbar-tool-icon-box "
+                href="#!"
+                onClick={() => setModalShow(true)}
+              >
+                <IoPersonOutline /> <span className="fw-bold">Login</span>
+              </a>
+            ) : (
+              <Dropdown className="">
+                <Dropdown.Toggle
+                  as="a"
+                  className="navbar-tool-icon-box d-block rounded-circle"
+                >
+                  <img
+                    src={avatar}
+                    alt="avtar"
+                    style={{ width: "50px", height: "50px" }}
+                  />
+                  {user && (
+                    <span className="fw-bold fs-xs ms-1">{user.firstname}</span>
+                  )}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu
+                  className="shadow-sm rounded-1 border-0 w-50"
+                  style={{ minWidth: "15rem" }}
+                >
+                  <Dropdown.Item href="#action3">Profile</Dropdown.Item>
+                  <Dropdown.Item href="#action4">Settings</Dropdown.Item>
+                  <div className="pb-2 border-bottom"></div>
+                  <Dropdown.Item href="#!" onClick={() => handleLogout()}>
+                    Logout
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
           </div>
         </div>
         {/* Right Box-icon:END */}
@@ -174,7 +137,12 @@ export default function NavBar() {
       {/* container:END */}
 
       {/* Right Sidebar[Cart] */}
-      {ShowCart}
+      <Cart
+        showCart={showCart}
+        setShowCart={setShowCart}
+        cartItems={cartItems}
+        cartTotalAmount={cartTotalAmount}
+      />
 
       {/* Left Sidebar[Menu] */}
       <NavMenu showMenu={showMenu} setShowMenu={setShowMenu} />
@@ -182,9 +150,17 @@ export default function NavBar() {
       {/* Login Modal*/}
       <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
         {signToggle ? (
-          <SignIn showSign={signToggle} signToggle={setSignToggle} />
+          <SignIn
+            showSign={signToggle}
+            signToggle={setSignToggle}
+            setModalShow={setModalShow}
+          />
         ) : (
-          <SignUp showSign={signToggle} signToggle={setSignToggle} />
+          <SignUp
+            showSign={signToggle}
+            signToggle={setSignToggle}
+            setModalShow={setModalShow}
+          />
         )}
       </AuthModal>
       {/* Navbar:END */}

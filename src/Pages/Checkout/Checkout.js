@@ -1,35 +1,44 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+// import route components
+import { Outlet } from "react-router-dom";
 
 // import Component Styles
 import "./Checkout.scss";
 
 // import Components
-import { Animated, PageTitle, CartListItem } from "../../Components";
-
-import { Page404 } from "..";
-import { useSelector } from "react-redux";
-import NoCartItems from "../../Components/Layout/Header/NoCartItems";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  Animated,
+  PageTitle,
+  CartListItem,
+  NoCartItems,
+} from "../../Components";
+import Steps from "./Steps";
 
 function Checkout() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
-  // if (e) return <Page404 />;
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
-    <Animated>
+    <React.Fragment>
       <PageTitle name="Checkout" />
       <div className="checkout__page">
         <Container>
           <Row className="d-flex">
             {/* Content */}
-            <Col lg={8} className="col-lg-8 content py-4">
-              <div className="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                <h2 className="h3 text-secondary">Billing details</h2>
-                <a href="#!" className="btn btn-outline-primary ps-2">
-                  Continue shopping
-                </a>
+            <Col lg={8} className="col-lg-8 checkout-body pb-4">
+              {/* CheckOut Heading [STEPS] */}
+              <div className="checkout-heading d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
+                <Steps isLoggedIn={isLoggedIn} />
               </div>
+              {/* checkout Content */}
+              <Animated>
+                <div className="checkout-content pt-1 pb-2 pb-sm-5 mt-1">
+                  <Outlet />
+                </div>
+              </Animated>
             </Col>
             {/* sidebar */}
             <Col
@@ -130,7 +139,7 @@ function Checkout() {
           </Row>
         </Container>
       </div>
-    </Animated>
+    </React.Fragment>
   );
 }
 

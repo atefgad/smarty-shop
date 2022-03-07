@@ -50,20 +50,14 @@ const productSlice = createSlice({
     [getProducts.pending]: (state, action) => {
       state.isLoading = true;
       state.error = null;
-
-      console.log(action);
     },
     [getProducts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
-
-      console.log(action);
     },
     [getProducts.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = null;
-
-      console.log(action);
     },
 
     // getProduct

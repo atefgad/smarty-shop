@@ -1,19 +1,89 @@
 .checkout__page {
     margin-top: -6.5rem;
 
-    .content {
+
+    .checkout-body {
         @media (min-width: 992px) {
 
             padding-left: 0.9375rem;
             padding-right: 2.5rem;
         }
 
+        .checkout-heading {}
+
+        .checkout-content {}
     }
 
     .order__sidebar {
         .cart__summary__items {
             max-height: 350px;
             overflow-y: scroll;
+            overflow-x: hidden;
         }
+    }
+}
+
+.steps {
+    display: flex;
+    width: 100%;
+
+    .step-item {
+        flex-basis: 0;
+        flex-grow: 1;
+        transition: color .25s ease-in-out;
+        text-align: center;
+        text-decoration: none !important;
+        color: rgba(255, 255, 255, .55);
+
+        .step-progress {
+            position: relative;
+            width: 100%;
+            height: 0.25rem;
+            color: #fff;
+            background-color: #485268;
+
+            .step-count {
+                position: absolute;
+                top: -0.75rem;
+                left: 50%;
+                width: 1.625rem;
+                height: 1.625rem;
+                margin-left: -0.8125rem;
+                border-radius: 50%;
+                font-size: .875rem;
+                line-height: 1.625rem;
+                background-color: #485268;
+            }
+        }
+
+        .step-label {
+            padding-top: 1.5625rem;
+
+            .label-icon {
+                margin-top: -0.25rem;
+                margin-right: 0.425rem;
+                font-size: 1.2em;
+                vertical-align: middle;
+            }
+        }
+
+        &.active {
+            .step-progress {
+                color: #fff;
+                background-color: #fe696a;
+
+                .step-count {
+                    color: #fff;
+                    background-color: #fe696a;
+                }
+            }
+
+            &.current {
+                color: #fff;
+                pointer-events: none;
+            }
+        }
+
+
     }
 }

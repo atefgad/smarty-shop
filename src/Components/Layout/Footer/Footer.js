@@ -166,7 +166,7 @@ function Footer() {
           </div>
           <div className="col-md-6 col-lg-4 text-md-end mb-4">
             <img
-              class="d-inline-block"
+              className="d-inline-block"
               src={PaymentCards}
               width="187"
               alt="Payment methods"

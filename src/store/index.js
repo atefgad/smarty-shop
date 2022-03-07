@@ -12,5 +12,4 @@ const store = configureStore({
 });
 
 store.dispatch(cartTotalPrice());
-
 export default store;

@@ -16,6 +16,7 @@ import SignUp from "./RegisterForm/SignUp/SignUp";
 
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
+import NoCartItems from "./Layout/Header/NoCartItems";
 import HeroSection from "./HeroSection/HeroSection";
 import Loading from "./Loading/Loading";
 import ProductCard from "./ProductCard/ProductCard";
@@ -34,6 +35,7 @@ export {
   Footer,
   NavBar,
   Topbar,
+  NoCartItems,
   // Butttons
   AddToCartBtn,
   MainButton,

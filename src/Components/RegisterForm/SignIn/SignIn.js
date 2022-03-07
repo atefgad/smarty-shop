@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
 
-import { login, reset } from "../../../store/authSlice";
+import { login } from "../../../store/authSlice";
 
 import { Formik, Form as FORM, Field } from "formik";
 import * as Yup from "yup";
@@ -28,21 +27,10 @@ const SignupSchema = Yup.object().shape({
     .required("Please Enter Your Password!"),
 });
 
-function SignIn({ showSign, signToggle }) {
+function SignIn({ showSign, signToggle, setModalShow }) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  );
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    dispatch(reset());
-  }, [user, isLoading, isError, isSuccess, message, dispatch]);
   return (
     <motion.div
       className="register__form"
@@ -123,8 +111,9 @@ function SignIn({ showSign, signToggle }) {
                 <button
                   type="submit"
                   className="btn-primary w-100 text-primary text-capitalize fw-bold py-3"
+                  onClick={() => setModalShow(false)}
                 >
-                  Create an account
+                  Sign In
                 </button>
               </div>
             </div>

@@ -135,6 +135,11 @@
             }
         }
     }
+
+    .cartItems {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
 }
 
 .navbar-shadow {
