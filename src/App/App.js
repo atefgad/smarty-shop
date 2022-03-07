@@ -112,4 +112,10 @@ function App() {
               />
             </motion.div>
           </ScrollToTop>
-      
+        </AnimatePresence>
+      )}
+    </React.Fragment>
+  );
+}
+
+export default App;
