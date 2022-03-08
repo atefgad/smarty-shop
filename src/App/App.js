@@ -35,7 +35,7 @@ import { motion } from "framer-motion";
 function App() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.products);
-  const { user } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const location = useLocation();
 
@@ -77,7 +77,7 @@ function App() {
                 <Route path="/" element={<Home isLoading={isLoading} />} />
                 <Route path="about" element={<About />} />
                 <Route path="checkout" element={<Checkout />}>
-                  {!user.length ? (
+                  {!isLoggedIn ? (
                     <Route
                       index
                       element={

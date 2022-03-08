@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
-
-import { login } from "../../../store/authSlice";
 
 import { Formik, Form as FORM, Field } from "formik";
 import * as Yup from "yup";
 
+import { login } from "../../../store/authSlice";
+
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import "../styles.scss";
 
 const animations = {

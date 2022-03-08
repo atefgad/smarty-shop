@@ -36,7 +36,7 @@ export default function NavBar() {
 
   const handleLogout = () => {
     setTimeout(() => {
-      dispatch(logout);
+      dispatch(logout());
       toast.info("logout successful!");
     }, [2000]);
   };
@@ -93,7 +93,7 @@ export default function NavBar() {
           <div className="border-start ms-3 ps-2" style={{ height: 30 }}></div>
 
           <div className="navbar-tool ms-1 d-sm-flex">
-            {!user.length ? (
+            {!isLoggedIn ? (
               <a
                 className="navbar-tool-icon-box "
                 href="#!"
@@ -102,20 +102,20 @@ export default function NavBar() {
                 <IoPersonOutline /> <span className="fw-bold">Login</span>
               </a>
             ) : (
-              <Dropdown className="">
-                <Dropdown.Toggle
-                  as="a"
-                  className="navbar-tool-icon-box d-block rounded-circle"
-                >
-                  <img
-                    src={avatar}
-                    alt="avtar"
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                  {user && (
-                    <span className="fw-bold fs-xs ms-1">{user.firstname}</span>
+              <Dropdown className="avatar">
+                <div className="d-flex align-items-center justify-content-center">
+                  <Dropdown.Toggle
+                    as="a"
+                    className="navbar-tool-icon-box d-block rounded-circle"
+                  >
+                    <img className="avatar-img" src={avatar} alt="avtar" />
+                  </Dropdown.Toggle>
+                  {isLoggedIn && (
+                    <span className="avatar-name fw-bold ms-2">
+                      {user.firstName + " " + user.lastName}
+                    </span>
                   )}
-                </Dropdown.Toggle>
+                </div>
 
                 <Dropdown.Menu
                   className="shadow-sm rounded-1 border-0 w-50"

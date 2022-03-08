@@ -5,12 +5,15 @@ import {
   IoLocationOutline,
   IoPersonOutline,
 } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-function Steps({ user }) {
+function Steps() {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   return (
     <div className="steps steps-light pt-2 pb-3 mb-5">
-      {!user.length ? (
+      {!isLoggedIn ? (
         <NavLink to="/checkout/login" className="step-item">
           <div className="step-progress">
             <span className="step-count">1</span>

@@ -19,7 +19,6 @@ import Steps from "./Steps";
 
 function Checkout() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.auth);
 
   return (
     <React.Fragment>
@@ -31,7 +30,7 @@ function Checkout() {
             <Col lg={8} className="col-lg-8 checkout-body pb-4">
               {/* CheckOut Heading [STEPS] */}
               <div className="checkout-heading d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                <Steps user={user} />
+                <Steps />
               </div>
               {/* checkout Content */}
               <Animated>
