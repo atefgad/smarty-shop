@@ -27,6 +27,8 @@ import Animated from "./Animated/Animated";
 import Bannar from "./Bannar/Bannar";
 import Brands from "./Brands/Brands";
 
+import HeartIcon from "./HeartIcon/HeartIcon";
+
 import ScrollToTop from "./ScrollToTop";
 
 export {
@@ -39,6 +41,8 @@ export {
   // Butttons
   AddToCartBtn,
   MainButton,
+  //icons
+  HeartIcon,
   //Modals
   AuthModal,
   ModalUi,

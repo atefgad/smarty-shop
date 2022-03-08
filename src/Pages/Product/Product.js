@@ -24,6 +24,7 @@ import "./Product.scss";
 import {
   AddToCartBtn,
   Animated,
+  HeartIcon,
   ProductsSlides,
   SectionHead,
 } from "../../Components";
@@ -38,6 +39,8 @@ function Product() {
   const [qty, setQty] = useState(1);
 
   const [Clicked, setClicked] = useState(false);
+
+  const [active, setActive] = useState(false);
 
   // console.log("qnt ", qnt);
 
@@ -166,11 +169,11 @@ function Product() {
               </div>
 
               {/* Buttons Box*/}
-              <div className="p-sm-fixed d-flex mt-4 mb-3">
+              <div className="p-sm-fixed d-flex align-items-center justify-content-center mt-4 mb-3">
                 {/* select Qty Box*/}
                 <select
                   className="form-select me-3"
-                  style={{ width: "5rem" }}
+                  style={{ width: "5rem", height: "60px" }}
                   onChange={(e) => setQty(e.target.value)}
                 >
                   <option value="1">1</option>
@@ -186,14 +189,20 @@ function Product() {
                   clicked={Clicked}
                   className="btn-primary fw-bold text-light btn-lg d-block w-100"
                 />
-                {/* ADD TO Wishlist[btn] */}
+                {/* ADD TO Wishlist[btn] 
                 <button
-                  className="btn btn-outline-secondary rounded-2 d-flex align-items-center justify-content-center ms-3"
+                  className="btn btn-outline-primary rounded-2 d-flex align-items-center justify-content-center ms-3"
                   style={{ width: "5rem" }}
                   type="button"
                 >
                   <IoHeartOutline className="fw-bold fs-2" />
                 </button>
+                */}
+
+                <HeartIcon
+                  active={active ? "active" : ""}
+                  onClick={() => setActive(!active)}
+                />
               </div>
               <div className="my-4">
                 <p className="text-muted">{getProduct.description}</p>

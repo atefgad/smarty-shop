@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // import Bootstrap Components
@@ -6,22 +6,37 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 // import Icons
-import { IoHeartOutline, IoStar } from "react-icons/io5";
+import { IoHeart, IoHeartOutline, IoStar } from "react-icons/io5";
 import { BsCartPlus } from "react-icons/bs";
 
 // import Styles
 import "./ProductCard.scss";
 
 import { addToCart } from "../../store/cartSlice";
+import { addWishItem, removeWishItem } from "../../store/wishlistSlice";
 
 function ProductCard({ product }) {
-  const cart = useSelector((state) => state.cart);
+  // const { wishList } = useSelector((state) => state.wish);
+  const [toggleFav, setToggleFav] = useState(false);
+
+  // const wlist = wishList.map((item) => item.id === 2);
 
   const dispatch = useDispatch();
 
+  // Add to cart
   const handleAddToCart = (data) => {
     dispatch(addToCart(data));
-    console.log("from addCart ", data);
+  };
+
+  // handle Add Wishlist
+  const handleAddWishList = (data) => {
+    dispatch(addWishItem(data));
+    setToggleFav(!toggleFav);
+  };
+  // handle Remove Wishlist
+  const handleRemoveWishList = (data) => {
+    dispatch(removeWishItem(data));
+    setToggleFav(!toggleFav);
   };
 
   return (
@@ -62,18 +77,41 @@ function ProductCard({ product }) {
             {product.rating.rate} <small> ({product.rating.count})</small>
           </div>
           <div className="d-flex align-items-center">
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip id="tooltip-top">
-                  <span className="btn-tooltip">Add to Wishlist</span>
-                </Tooltip>
-              }
-            >
-              <a className="btn-wishlist" href="#">
-                <IoHeartOutline />
-              </a>
-            </OverlayTrigger>
+            {/* wishlist[BTN] */}
+
+            {!toggleFav ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="tooltip-top">
+                    <span className="btn-tooltip">Add to Wishlist</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  className=" btn btn-link p-0 btn-wishlist"
+                  onClick={() => handleAddWishList(product)}
+                >
+                  <IoHeartOutline />
+                </button>
+              </OverlayTrigger>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="tooltip-top">
+                    <span className="btn-tooltip">remove Wishlist</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  className=" btn btn-link p-0 btn-wishlist"
+                  onClick={() => handleRemoveWishList(product)}
+                >
+                  <IoHeart className="text-danger" />
+                </button>
+              </OverlayTrigger>
+            )}
 
             <span className="btn-divider"></span>
 

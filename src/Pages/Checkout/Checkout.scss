@@ -11,7 +11,13 @@
 
         .checkout-heading {}
 
-        .checkout-content {}
+        .checkout-content {
+            input {
+                &::placeholder {
+                    color: rgba(138, 134, 134, 0.383);
+                }
+            }
+        }
     }
 
     .order__sidebar {

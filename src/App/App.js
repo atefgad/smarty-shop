@@ -14,15 +14,23 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { Header, Footer, Loading, ScrollToTop } from "../Components";
 
 // import Pages Components
-import { Home, Product, Category, Checkout, About, Page404 } from "../Pages";
+import {
+  Home,
+  Product,
+  Category,
+  Checkout,
+  About,
+  Page404,
+  //checkout sub pages
+  UserLogIn,
+  Shipping,
+  Payment,
+  OrderPlaced,
+} from "../Pages";
 
 import { ToastContainer } from "react-toastify";
 
 import { motion } from "framer-motion";
-import OrderPlaced from "../Pages/Checkout/Pages/OrderPlaced/OrderPlaced";
-import Payment from "../Pages/Checkout/Pages/Payment/Payment";
-import Shipping from "../Pages/Checkout/Pages/Shipping/Shipping";
-import UserLogIn from "../Pages/Checkout/Pages/UserLogIn/UserLogIn";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,10 +44,7 @@ function App() {
   // const isLoading = true;
   useEffect(() => {
     dispatch(getProducts());
-    console.log("inside", getProducts);
   }, [dispatch]);
-
-  console.log("outside", getProducts);
 
   const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
@@ -83,12 +88,9 @@ function App() {
                       }
                     />
                   ) : (
-                    <>
-                      <Route index element={<Shipping />} />
-                      <Route path="shipping" element={<Shipping />} />
-                    </>
+                    <Route element={<Shipping />} />
                   )}
-
+                  <Route path="shipping" element={<Shipping />} />
                   <Route path="payment" element={<Payment />} />
                   <Route path="order-placed" element={<OrderPlaced />} />
                 </Route>

@@ -7,10 +7,10 @@ import {
 } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
-function Steps({ isLoggedIn }) {
+function Steps({ user }) {
   return (
     <div className="steps steps-light pt-2 pb-3 mb-5">
-      {!isLoggedIn ? (
+      {!user.length ? (
         <NavLink to="/checkout/login" className="step-item">
           <div className="step-progress">
             <span className="step-count">1</span>

@@ -32,7 +32,7 @@ function Cart({ cartTotalAmount, cartItems, showCart, setShowCart }) {
         {/* offcanvas-header:END */}
 
         {/* offcanvas-body */}
-        <Offcanvas.Body>
+        <Offcanvas.Body className="x-hidden">
           <div className="cartItems">
             <AnimatePresence>
               {cartItems.length > 0 ? (

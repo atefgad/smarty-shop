@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 // import route components
@@ -19,19 +19,19 @@ import Steps from "./Steps";
 
 function Checkout() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <React.Fragment>
       <PageTitle name="Checkout" />
       <div className="checkout__page">
-        <Container>
+        <form className="container">
           <Row className="d-flex">
             {/* Content */}
             <Col lg={8} className="col-lg-8 checkout-body pb-4">
               {/* CheckOut Heading [STEPS] */}
               <div className="checkout-heading d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
-                <Steps isLoggedIn={isLoggedIn} />
+                <Steps user={user} />
               </div>
               {/* checkout Content */}
               <Animated>
@@ -64,8 +64,9 @@ function Checkout() {
                         animate={{ opacity: 1, translateX: 0, translateY: 0 }}
                         exit={{ opacity: 0, duration: 0.5 }}
                         transition={{ duration: 0.3, delay: i * 0.3 }}
+                        key={item.id}
                       >
-                        <CartListItem cartItem={item} key={item.id} />
+                        <CartListItem cartItem={item} />
                       </motion.div>
                     ))}
                   </div>
@@ -137,7 +138,7 @@ function Checkout() {
               )}
             </Col>
           </Row>
-        </Container>
+        </form>
       </div>
     </React.Fragment>
   );

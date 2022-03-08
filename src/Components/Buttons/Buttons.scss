@@ -43,7 +43,7 @@
     color: #fff;
     transform: translate(-50%, -50%);
 
-    @media screen and (max-width: 380px) {
+    @media (max-width: 380px) {
         font-size: .9rem !important;
         width: 100%;
     }

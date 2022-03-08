@@ -76,12 +76,8 @@ button:focus {
     }
 }
 
-.btn-outline-secondary {
-    color: $main-color !important;
-    border-color: $main-color !important;
-
+.btn-outline-gray-800 {
     &:hover {
-        background-color: $main-color !important;
         color: #fff !important;
     }
 }
@@ -123,6 +119,15 @@ button:focus {
     &:focus {
         box-shadow: unset;
     }
+}
+
+/* Form[inputs] */
+input[type="number"]:in-range {
+    border-color: rgba(0, 255, 0, 0.25);
+}
+
+input[type="number"]:out-of-range {
+    border-color: rgba(255, 0, 0, 0.25);
 }
 
 .dropdown-toggle {
@@ -253,6 +258,10 @@ body,
         transition: 0.3s;
     }
 
+}
+
+.x-hidden {
+    overflow-x: hidden;
 }
 
 // Remove Arrows/Spinners

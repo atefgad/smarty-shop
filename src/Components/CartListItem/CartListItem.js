@@ -24,6 +24,7 @@ function CartListItem({ cartItem, setCloseCart }) {
   const handleRemoveItem = (cartItem) => {
     dispatch(removeCartItem(cartItem));
   };
+
   return (
     <div className="d-flex align-items-center pe-2 mb-3">
       {/* Product Image */}
@@ -81,7 +82,8 @@ function CartListItem({ cartItem, setCloseCart }) {
                     maxWidth: "3rem",
                     textAlign: "center",
                   }}
-                  min="1"
+                  min="8"
+                  max="5"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />

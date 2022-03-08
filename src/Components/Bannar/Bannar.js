@@ -15,7 +15,7 @@ function Bannar() {
           <Col md={6}>
             <div className="bannar__card card-shadow position-relative mb-4  me-2 bg-primary text-light rounded-3">
               <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 text-lg-start text-sm-start">
-                <h5 className="text-muted">Men's Fashion</h5>
+                <h5 className="text-light">Men's Fashion</h5>
                 <h3 className="card__content__title text-bold">Up to 50%</h3>
                 <Link
                   className="card__content__btn btn btn-outline-light mt-2"
@@ -34,10 +34,10 @@ function Bannar() {
           <Col md={6}>
             <div className="bannar__card card-shadow position-relative mb-4 me-2 bg-secondary text-black rounded-3">
               <div className="card__content py-2 my-2 my-md-0 py-md-5 px-4 d-lg-flex justify-lg-content-center flex-lg-column align-items-lg-end text-lg-end text-sm-end text-xs-end">
-                <h5 className="text-muted">Women's Fashion</h5>
-                <h3 className="card__content__title text-bold">Up to 50%</h3>
+                <h5 className="text-gray-800">Women's Fashion</h5>
+                <h3 className="card__content__title text-bold">Up to 70%</h3>
                 <Link
-                  className="card__content__btn btn btn-outline-primary mt-2"
+                  className="card__content__btn btn btn-outline-gray-800 mt-2"
                   to="/category/women's_clothing"
                 >
                   Shop Now!

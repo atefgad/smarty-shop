@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Offcanvas } from "react-bootstrap";
+import { IoLogInOutline } from "react-icons/io5";
 import MenuList from "../../../MenuList/MenuList";
 
 function NavMenu({ showMenu, setShowMenu }) {
@@ -29,14 +30,13 @@ function NavMenu({ showMenu, setShowMenu }) {
         {/* offcanvas-body:END */}
 
         {/* offcanvas-footer */}
-        <div className="offcanvas-footer border-top">
+        <div className="offcanvas-footer border-3 border-top border-primary">
           <a
-            className="btn btn-outline-primary d-block w-100"
-            href="#modal-signin"
-            data-bs-toggle="modal"
-            data-view="#modal-signin-view"
+            className="btn btn-outline-primary border-0 d-block w-100 fw-bold"
+            href="#!"
           >
-            <i className="ai-user fs-lg me-2"></i>Sign in
+            <IoLogInOutline className="fw-bold me-1" />
+            Sign in
           </a>
         </div>
         {/* offcanvas-footer:END */}

@@ -93,7 +93,7 @@ export default function NavBar() {
           <div className="border-start ms-3 ps-2" style={{ height: 30 }}></div>
 
           <div className="navbar-tool ms-1 d-sm-flex">
-            {!isLoggedIn ? (
+            {!user.length ? (
               <a
                 className="navbar-tool-icon-box "
                 href="#!"
