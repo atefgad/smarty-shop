@@ -77,6 +77,7 @@ function App() {
                 <Route path="/" element={<Home isLoading={isLoading} />} />
                 <Route path="about" element={<About />} />
                 <Route path="checkout" element={<Checkout />}>
+                  {/* <Route index element={<Navigate to="/checkout/login" />} /> */}
                   {!isLoggedIn ? (
                     <Route
                       index
@@ -90,7 +91,7 @@ function App() {
                   ) : (
                     <Route element={<Shipping />} />
                   )}
-                  <Route path="shipping" element={<Shipping />} />
+                  <Route path="shipping" index element={<Shipping />} />
                   <Route path="payment" element={<Payment />} />
                   <Route path="order-placed" element={<OrderPlaced />} />
                 </Route>
