@@ -16,12 +16,13 @@ import {
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
-import { AuthModal, SignIn, SignUp } from "../../..";
+import { AuthModal, Login, Register } from "../../../index";
 import { logout } from "../../../../store/authSlice";
 import { toast } from "react-toastify";
 
 import avatar from "../../../../Assets/images/avatar.svg";
 import Cart from "../Cart";
+import { openModal } from "../../../../store/modalSlice";
 
 export default function NavBar() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
@@ -97,7 +98,7 @@ export default function NavBar() {
               <a
                 className="navbar-tool-icon-box "
                 href="#!"
-                onClick={() => setModalShow(true)}
+                onClick={() => dispatch(openModal("Login"))}
               >
                 <IoPersonOutline /> <span className="fw-bold">Login</span>
               </a>
@@ -147,22 +148,6 @@ export default function NavBar() {
       {/* Left Sidebar[Menu] */}
       <NavMenu showMenu={showMenu} setShowMenu={setShowMenu} />
 
-      {/* Login Modal*/}
-      <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
-        {signToggle ? (
-          <SignIn
-            showSign={signToggle}
-            signToggle={setSignToggle}
-            setModalShow={setModalShow}
-          />
-        ) : (
-          <SignUp
-            showSign={signToggle}
-            signToggle={setSignToggle}
-            setModalShow={setModalShow}
-          />
-        )}
-      </AuthModal>
       {/* Navbar:END */}
     </Navbar>
   );

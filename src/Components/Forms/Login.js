@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { motion } from "framer-motion";
@@ -6,10 +6,11 @@ import { motion } from "framer-motion";
 import { Formik, Form as FORM, Field } from "formik";
 import * as Yup from "yup";
 
-import { login } from "../../../store/authSlice";
+import { login } from "../../store/authSlice";
 
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import "../styles.scss";
+import "./styles.scss";
+import { closeModal, openModal } from "../../store/modalSlice";
 
 const animations = {
   initial: { opacity: 0 },
@@ -27,8 +28,8 @@ const SignupSchema = Yup.object().shape({
     .required("Please Enter Your Password!"),
 });
 
-function SignIn({ showSign, signToggle, setModalShow }) {
-  const [show, setShow] = useState(false);
+function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   return (
@@ -47,7 +48,7 @@ function SignIn({ showSign, signToggle, setModalShow }) {
           <a
             className="ms-2 fw-bold border-text"
             href="#!"
-            onClick={() => signToggle(!showSign)}
+            onClick={() => dispatch(openModal("Register"))}
           >
             Sign Up
           </a>
@@ -64,6 +65,7 @@ function SignIn({ showSign, signToggle, setModalShow }) {
           // same shape as initial values
           // console.log(values);
           dispatch(login(values));
+          dispatch(closeModal());
         }}
       >
         {({ errors, touched }) => (
@@ -93,7 +95,7 @@ function SignIn({ showSign, signToggle, setModalShow }) {
                         : null
                     }`}
                     name="password"
-                    type={!show ? "password" : "text"}
+                    type={!showPassword ? "password" : "text"}
                   />
                   {errors.password && touched.password ? (
                     <div className="invalid-feedback">{errors.password}</div>
@@ -101,9 +103,9 @@ function SignIn({ showSign, signToggle, setModalShow }) {
                   <a
                     href="#!"
                     className="eye_icon"
-                    onClick={() => setShow(!show)}
+                    onClick={() => setShowPassword(!showPassword)}
                   >
-                    {!show ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                    {!showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
                   </a>
                 </div>
               </Form.Group>
@@ -111,7 +113,6 @@ function SignIn({ showSign, signToggle, setModalShow }) {
                 <button
                   type="submit"
                   className="btn-primary w-100 text-primary text-capitalize fw-bold py-3"
-                  onClick={() => setModalShow(false)}
                 >
                   Sign In
                 </button>
@@ -124,4 +125,4 @@ function SignIn({ showSign, signToggle, setModalShow }) {
   );
 }
 
-export default SignIn;
+export default Login;

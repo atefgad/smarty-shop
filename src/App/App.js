@@ -11,7 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import "react-toastify/dist/ReactToastify.min.css";
 // import "react-toastify/dist/ReactToastify.css";
 
-import { Header, Footer, Loading, ScrollToTop } from "../Components";
+import { Header, Footer, Loading, ScrollToTop, Modal } from "../Components";
 
 // import Pages Components
 import {
@@ -79,15 +79,7 @@ function App() {
                 <Route path="checkout" element={<Checkout />}>
                   {/* <Route index element={<Navigate to="/checkout/login" />} /> */}
                   {!isLoggedIn ? (
-                    <Route
-                      index
-                      element={
-                        <UserLogIn
-                          signToggle={signToggle}
-                          setSignToggle={setSignToggle}
-                        />
-                      }
-                    />
+                    <Route index element={<UserLogIn />} />
                   ) : (
                     <Route element={<Shipping />} />
                   )}
@@ -101,6 +93,8 @@ function App() {
               </Routes>
 
               <Footer />
+              {/* Main Modal */}
+              <Modal />
               {/* ReactToastify */}
               <ToastContainer
                 position="top-left"

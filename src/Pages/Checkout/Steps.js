@@ -1,15 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+
+// import Icons
 import {
   IoBagCheckOutline,
   IoCardOutline,
   IoLocationOutline,
   IoPersonOutline,
 } from "react-icons/io5";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 function Steps() {
   const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const location = useLocation();
+
+  console.log("location", location);
 
   return (
     <div className="steps steps-light pt-2 pb-3 mb-5">

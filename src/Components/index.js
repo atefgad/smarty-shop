@@ -7,12 +7,13 @@ import { AddToCartBtn } from "./Buttons/AddToCartBtn";
 import MainButton from "./Buttons/MainButton/MainButton";
 
 // Modals
-import ModalUi from "./Modal/Modal";
-import AuthModal from "./Modal/AuthModal";
+import Modal from "./util/Modal";
+import ModalUi from "./Layout/Modal/ModalUi";
+import AuthModal from "./Layout/Modal/AuthModal";
 
 //Register form
-import SignIn from "./RegisterForm/SignIn/SignIn";
-import SignUp from "./RegisterForm/SignUp/SignUp";
+import Login from "./Forms/Login";
+import Register from "./Forms/Register";
 
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
@@ -44,11 +45,12 @@ export {
   //icons
   HeartIcon,
   //Modals
+  Modal,
   AuthModal,
   ModalUi,
   //Register form
-  SignIn,
-  SignUp,
+  Login,
+  Register,
   CartListItem,
   CategoryList,
   HeroSection,

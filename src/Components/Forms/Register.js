@@ -4,12 +4,13 @@ import { Form } from "react-bootstrap";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-import { register } from "../../../store/authSlice";
+import { register } from "../../store/authSlice";
 
 import { Formik, Form as FORM, Field } from "formik";
 import * as Yup from "yup";
 
-import "../styles.scss";
+import "./styles.scss";
+import { closeModal, openModal } from "../../store/modalSlice";
 
 const animations = {
   initial: { opacity: 0 },
@@ -35,8 +36,8 @@ const SignupSchema = Yup.object().shape({
     .required("Please Enter Your Password!"),
 });
 
-function SignUp({ showSign, signToggle, setModalShow }) {
-  const [show, setShow] = useState(false);
+function Register() {
+  const [showPassword, setshowPassword] = useState(false);
   const dispatch = useDispatch();
 
   return (
@@ -54,7 +55,7 @@ function SignUp({ showSign, signToggle, setModalShow }) {
           <a
             className="ms-2 fw-bold border-text"
             href="#!"
-            onClick={() => signToggle(!showSign)}
+            onClick={() => dispatch(openModal("Login"))}
           >
             Sign In
           </a>
@@ -70,9 +71,8 @@ function SignUp({ showSign, signToggle, setModalShow }) {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          // same shape as initial values
-          // console.log(values);
           dispatch(register(values));
+          dispatch(closeModal());
         }}
       >
         {({ errors, touched }) => (
@@ -128,7 +128,7 @@ function SignUp({ showSign, signToggle, setModalShow }) {
                         : null
                     }`}
                     name="password"
-                    type={!show ? "password" : "text"}
+                    type={!showPassword ? "password" : "text"}
                   />
                   {errors.password && touched.password ? (
                     <div className="invalid-feedback">{errors.password}</div>
@@ -136,9 +136,9 @@ function SignUp({ showSign, signToggle, setModalShow }) {
                   <a
                     href="#!"
                     className="eye_icon"
-                    onClick={() => setShow(!show)}
+                    onClick={() => setshowPassword(!showPassword)}
                   >
-                    {!show ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                    {!showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
                   </a>
                 </div>
               </Form.Group>
@@ -146,7 +146,6 @@ function SignUp({ showSign, signToggle, setModalShow }) {
                 <button
                   type="submit"
                   className="btn-primary w-100 text-primary text-capitalize fw-bold py-3"
-                  onClick={() => setModalShow(false)}
                 >
                   Create an account
                 </button>
@@ -159,4 +158,4 @@ function SignUp({ showSign, signToggle, setModalShow }) {
   );
 }
 
-export default SignUp;
+export default Register;
