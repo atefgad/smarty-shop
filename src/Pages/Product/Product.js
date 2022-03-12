@@ -183,7 +183,11 @@ function Product() {
                 {/* ADD TO CART[btn] */}
                 <AddToCartBtn
                   onClick={() =>
-                    handleAddToCart({ ...getProduct, quantity: qty })
+                    handleAddToCart({
+                      ...getProduct,
+                      quantity: qty,
+                      size: "L",
+                    })
                   }
                   qty={qty}
                   clicked={Clicked}

@@ -122,13 +122,13 @@ button:focus {
 }
 
 /* Form[inputs] */
-input[type="number"]:in-range {
-    border-color: rgba(0, 255, 0, 0.25);
-}
+// input[type="number"]:in-range {
+//     border-color: rgba(0, 255, 0, 0.25);
+// }
 
-input[type="number"]:out-of-range {
-    border-color: rgba(255, 0, 0, 0.25);
-}
+// input[type="number"]:out-of-range {
+//     border-color: rgba(255, 0, 0, 0.25);
+// }
 
 .dropdown-toggle {
     &::after {
