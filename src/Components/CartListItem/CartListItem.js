@@ -4,7 +4,7 @@ import { IoAddOutline, IoRemoveOutline, IoTrashOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  addToCart,
+  increaseCart,
   cartTotalPrice,
   decreaseCart,
   removeCartItem,
@@ -21,6 +21,12 @@ function CartListItem({ cartItem, setCloseCart }) {
     dispatch(cartTotalPrice());
   }, [dispatch, shoppingCart, quantity]);
 
+  const handleIncrease = (cartItem) => {
+    dispatch(increaseCart(cartItem));
+  };
+  const handleDecrease = (cartItem) => {
+    dispatch(decreaseCart(cartItem));
+  };
   const handleRemoveItem = (cartItem) => {
     dispatch(removeCartItem(cartItem));
   };
@@ -69,7 +75,7 @@ function CartListItem({ cartItem, setCloseCart }) {
                 >
                   <button
                     className="btn btn-secondary btn-sm rounded-circle"
-                    onClick={() => setQuantity(quantity - 1)}
+                    onClick={() => handleDecrease(cartItem)}
                   >
                     <IoRemoveOutline />
                   </button>
@@ -82,10 +88,8 @@ function CartListItem({ cartItem, setCloseCart }) {
                     maxWidth: "3rem",
                     textAlign: "center",
                   }}
-                  min="8"
-                  max="5"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  value={cartItem.quantity}
+                  // onChange={(e) => setQuantity(e.target.value)}
                 />
                 {/* Quantity[ADD BTN] */}
                 <OverlayTrigger
@@ -98,7 +102,7 @@ function CartListItem({ cartItem, setCloseCart }) {
                 >
                   <button
                     className="btn btn-secondary btn-sm rounded-circle"
-                    onClick={() => setQuantity(quantity + 1)}
+                    onClick={() => handleIncrease(cartItem)}
                   >
                     <IoAddOutline />
                   </button>

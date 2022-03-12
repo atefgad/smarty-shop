@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../store/modalSlice";
-import { ModalUi, Login, Register } from "../index";
+import { ModalUi, Login, Register, AddPaymentCard } from "../index";
 
 function Modal() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function Modal() {
     dispatch(closeModal());
   };
 
-  const componentsNames = { Login, Register };
+  const componentsNames = { Login, Register, AddPaymentCard };
   let renderComponent;
 
   if (componentName) {

@@ -18,7 +18,7 @@ function Steps() {
   console.log("location", location);
 
   return (
-    <div className="steps steps-light pt-2 pb-3 mb-5">
+    <div className="steps steps-light pt-2 pb-3 mb-4">
       {!isLoggedIn ? (
         <NavLink to="/checkout/login" className="step-item">
           <div className="step-progress">

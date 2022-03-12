@@ -1,99 +1,61 @@
 import React from "react";
-import {
-  IoCalendarNumberOutline,
-  IoCardOutline,
-  IoLockClosedOutline,
-} from "react-icons/io5";
-import "./Payment.scss";
+import { Col, Nav, Row, Tab, Tabs } from "react-bootstrap";
+import PaymentCards from "./PaymentCards";
 
-import mastercard from "../../../../Assets/images/icons/mastercard.png";
-import visa from "../../../../Assets/images/icons/visa.png";
+import "./Payment.scss";
+import {
+  IoAlertCircleOutline,
+  IoCardSharp,
+  IoCashOutline,
+} from "react-icons/io5";
 
 function Payment() {
   return (
     <div className="payment__method">
-      <div className="card">
-        <h4 className="mb-0">Choose payment method</h4>
-        <hr className="mb-5" />
-        <form>
-          <h6 className="text-">SELECT A SAVED CARD</h6>
-          <hr className="border-top border-2" />
-          <div className="payment__method__item mb-3 border-2 border-primary row d-flex align-items-center">
-            <div className="col-2">
-              <img className="img-fluid" alt="mastercard" src={mastercard} />
-            </div>
-            <div className="col-7">
-              <input type="text" placeholder="**** **** **** 3193" disabled />
-            </div>
-            <div className="col-3">
-              <a href="#!">Select card</a>
-            </div>
-          </div>
-          <div className=" payment__method__item row d-flex align-items-center">
-            <div className="col-2">
-              <img className="img-fluid" src={visa} alt="visa" />
-            </div>
-            <div className="col-7">
-              <input type="text" disabled placeholder="**** **** **** 4296" />
-            </div>
-            <div className="col-3 d-flex justify-content-center">
-              <a href="#!">Select card</a>
-            </div>
-          </div>
-          <div className="d-flex align-justify-content justify-content-center text-center my-3">
-            <span className="p-4 bg-secondary text-dark border-gray-400 border border-2 fs-4 fw-bolder rounded-circle">
-              Or
-            </span>
-          </div>
-
-          <h5 className="mt-4 mb-2 ">Add new card</h5>
-          <hr className="border-top border-2" />
-          <div className="payment-card-body">
-            <span className="font-weight-normal card-text">Card Number</span>
-            <div className="input">
-              <IoCardOutline className="input__icon" />
-              <input
-                type="number"
-                className="form-control"
-                placeholder="0000 0000 0000 0000"
-              />
-            </div>
-            <div className="row mt-3 mb-3">
-              <div className="col-md-8">
-                <span className="font-weight-normal card-text">
-                  Expiry Date
-                </span>
-                <div className="input">
-                  <IoCalendarNumberOutline className="input__icon" />
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="MM/YY"
-                  />
+      <h5 className="h4 mb-3">Choose payment method</h5>
+      <div className="payment__cards">
+        <Tab.Container defaultActiveKey="first">
+          <Nav
+            variant="pills"
+            className="d-flex justify-content-center align-items-center mb-3"
+          >
+            <Nav.Item className="w-50">
+              <Nav.Link eventKey="first">
+                <IoCardSharp className="me-1 fw-bold fs-4" /> Pay with card
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="w-50">
+              <Nav.Link eventKey="second">
+                <IoCashOutline className="me-1 fw-bold fs-4" /> Pay with cash
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">
+              <PaymentCards />
+            </Tab.Pane>
+            <Tab.Pane eventKey="second">
+              <div className="bg-secondary d-flex align-items-center rounded-2 fs-md border border-1 p-2 my-5 ">
+                <IoAlertCircleOutline className="fs-2 me-3" />
+                <div className="d">
+                  <p className="text-gray-600 m-0">
+                    Please note there is a non-refundable fee of{" "}
+                    <span className=" fw-bold">$ 10.00 </span>for our cash on
+                    delivery service.
+                  </p>
+                  <p className="text-gray-600 m-0">
+                    To save on this amount,
+                    <a className="text-gray-900 alert-link " href="#!">
+                      please proceed with debit/credit card.
+                    </a>
+                  </p>
                 </div>
               </div>
-              <div className="col-md-4">
-                <span className="font-weight-normal card-text">CVC/CVV</span>
-                <div className="input">
-                  <IoLockClosedOutline className="input__icon" />
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="000"
-                  />
-                </div>
-              </div>
-            </div>
-            <span className="text-muted certificate-text">
-              <IoLockClosedOutline /> Your transaction is secured with ssl
-              certificate
-            </span>
-          </div>
-          <button className="btn btn-primary fw-bold">Add new card</button>
-        </form>
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
       </div>
     </div>
   );
 }
-
 export default Payment;

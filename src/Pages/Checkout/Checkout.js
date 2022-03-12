@@ -17,12 +17,17 @@ function Checkout() {
     <React.Fragment>
       <PageTitle name="Checkout" />
       <div className="checkout__page">
-        <form className="container">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          className="container"
+        >
           <Row className="d-flex">
             {/* Content */}
             <Col lg={8} className="col-lg-8 checkout-body pb-4">
               {/* CheckOut Heading [STEPS] */}
-              <div className="checkout-heading d-flex justify-content-between align-items-center pt-3 pb-2 mt-1">
+              <div className="checkout-heading d-flex justify-content-between align-items-center pt-3 pb-0 mt-1">
                 <Steps />
               </div>
               {/* checkout Content */}

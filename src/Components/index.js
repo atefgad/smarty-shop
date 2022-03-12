@@ -15,6 +15,8 @@ import AuthModal from "./Layout/Modal/AuthModal";
 import Login from "./Forms/Login";
 import Register from "./Forms/Register";
 
+import AddPaymentCard from "./Forms/AddPaymentCard";
+
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
 import NoCartItems from "./Layout/Header/NoCartItems";
@@ -51,6 +53,7 @@ export {
   //Register form
   Login,
   Register,
+  AddPaymentCard,
   CartListItem,
   CategoryList,
   HeroSection,

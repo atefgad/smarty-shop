@@ -21,10 +21,15 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      if (itemIndex >= 0) {
-        state.cartItems[itemIndex].quantity = parseInt(action.payload.quantity)
-          ? parseInt(action.payload.quantity)
-          : 1;
+      const check = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (check) {
+        state.cartItems[itemIndex].quantity =
+          parseInt(action.payload.quantity) >= 1
+            ? parseInt(action.payload.quantity)
+            : state.cartItems[itemIndex].quantity + 1;
 
         toast.info(
           `${action.payload.title.substr(0, 20)}... increased quantity`
@@ -32,9 +37,10 @@ const cartSlice = createSlice({
       } else {
         const productData = {
           ...action.payload,
-          quantity: parseInt(action.payload.quantity)
-            ? parseInt(action.payload.quantity)
-            : 1,
+          quantity:
+            parseInt(action.payload.quantity) > 0
+              ? parseInt(action.payload.quantity)
+              : 1,
         };
         state.cartItems.push(productData);
 
@@ -54,21 +60,25 @@ const cartSlice = createSlice({
 
       toast.error(`${action.payload.title.substr(0, 25)}... removed from cart`);
     },
+    // increaseCart
+    increaseCart: (state, action) => {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (state.cartItems[itemIndex].quantity >= 0) {
+        state.cartItems[itemIndex].quantity += 1;
+      }
+    },
     // decreaseCart
     decreaseCart: (state, action) => {
       const itemIndex = state.cartItems.findIndex(
-        (cartItem) => cartItem.id === action.payload.id
+        (item) => item.id === action.payload.id
       );
 
-      let cartItemQty = state.cartItems[itemIndex].quantity;
-
-      if (cartItemQty > 1) {
-        cartItemQty -= 1;
-
-        toast.info(
-          `${action.payload.title.substr(0, 20)}... decrease quantity`
-        );
-      } else if (cartItemQty === 1) {
+      if (state.cartItems[itemIndex].quantity > 1) {
+        state.cartItems[itemIndex].quantity -= 1;
+      } else if (state.cartItems[itemIndex].quantity === 1) {
         const cartItemsFiltered = state.cartItems.filter(
           (item) => item.id !== action.payload.id
         );
@@ -81,6 +91,7 @@ const cartSlice = createSlice({
         );
       }
     },
+    // cartTotalPrice
     cartTotalPrice: (state, action) => {
       let { total, quantity } = state.cartItems.reduce(
         (cartTotal, cartItem) => {
@@ -105,5 +116,10 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addToCart, decreaseCart, removeCartItem, cartTotalPrice } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  increaseCart,
+  decreaseCart,
+  removeCartItem,
+  cartTotalPrice,
+} = cartSlice.actions;

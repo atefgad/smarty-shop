@@ -1,3 +1,5 @@
+@import "../../scss/colors";
+
 .checkout__page {
     margin-top: -6.5rem;
 
@@ -90,6 +92,38 @@
             }
         }
 
+
+    }
+}
+
+.payment__cards {
+
+
+    .nav-pills .nav-link {
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 2px 0px;
+        border-radius: 2px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        width: 100%;
+        color: rgb(178, 187, 210);
+        border: 1px solid rgb(226, 229, 241);
+
+        &.active {
+            border-color: $main-color;
+            background-color: $main-color;
+            color: #fff;
+
+
+
+            &:hover {
+                color: #fff !important;
+            }
+        }
 
     }
 }
