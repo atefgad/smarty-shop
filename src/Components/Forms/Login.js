@@ -8,7 +8,7 @@ import * as Yup from "yup";
 
 import { login } from "../../store/authSlice";
 
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline, IoAlertCircle } from "react-icons/io5";
 import "./styles.scss";
 import { closeModal, openModal } from "../../store/modalSlice";
 
@@ -52,6 +52,18 @@ function Login() {
           >
             Sign Up
           </a>
+        </div>
+
+        <small className="d-block mt-3 mb-2 text-start">
+          Login with demo account
+        </small>
+        <div className="alert alert-info d-flex align-items-center fs-md">
+          <IoAlertCircle className="fs-xl me-3" />
+
+          <div>
+            <strong>Email: </strong> kate@gmail.com
+            <strong> Password: </strong> kfejk@*_
+          </div>
         </div>
       </div>
       {/* form fields */}

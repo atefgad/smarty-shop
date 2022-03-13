@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Nav, Row, Tab, Tabs } from "react-bootstrap";
+import { Nav, Tab } from "react-bootstrap";
 import PaymentCards from "./PaymentCards";
 
 import "./Payment.scss";
@@ -14,27 +14,29 @@ function Payment() {
     <div className="payment__method">
       <h5 className="h4 mb-3">Choose payment method</h5>
       <div className="payment__cards">
-        <Tab.Container defaultActiveKey="first">
+        <Tab.Container defaultActiveKey="payWithCard">
+          {/* Tabs */}
           <Nav
             variant="pills"
             className="d-flex justify-content-center align-items-center mb-3"
           >
             <Nav.Item className="w-50">
-              <Nav.Link eventKey="first">
+              <Nav.Link eventKey="payWithCard">
                 <IoCardSharp className="me-1 fw-bold fs-4" /> Pay with card
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="w-50">
-              <Nav.Link eventKey="second">
+              <Nav.Link eventKey="payWithCash">
                 <IoCashOutline className="me-1 fw-bold fs-4" /> Pay with cash
               </Nav.Link>
             </Nav.Item>
           </Nav>
+          {/* Tabs Content */}
           <Tab.Content>
-            <Tab.Pane eventKey="first">
+            <Tab.Pane eventKey="payWithCard">
               <PaymentCards />
             </Tab.Pane>
-            <Tab.Pane eventKey="second">
+            <Tab.Pane eventKey="payWithCash">
               <div className="bg-secondary d-flex align-items-center rounded-2 fs-md border border-1 p-2 my-5 ">
                 <IoAlertCircleOutline className="fs-2 me-3" />
                 <div className="d">

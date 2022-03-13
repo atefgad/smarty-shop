@@ -23,7 +23,7 @@ function CategoryList() {
           <h3 className="icon-box-title fs-sm ps-1 pe-2 mb-0">
             men's clothing
           </h3>
-          <span>From $5.99</span>
+          <span>From $15.99</span>
         </div>
       </Link>
 
@@ -36,7 +36,7 @@ function CategoryList() {
         </div>
         <div className="text-center">
           <h3 className="icon-box-title fs-sm ps-1 pe-2 mb-0">Accessories</h3>
-          <span>From $5.99</span>
+          <span>From $9.99</span>
         </div>
       </Link>
       <Link
@@ -48,7 +48,7 @@ function CategoryList() {
         </div>
         <div className="text-center">
           <h3 className="icon-box-title fs-sm ps-1 pe-2 mb-0">electronics</h3>
-          <span>From $5.99</span>
+          <span>From $60.99</span>
         </div>
       </Link>
     </section>

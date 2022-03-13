@@ -1,51 +1,31 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Dropdown, Navbar } from "react-bootstrap";
+import { Button, Navbar } from "react-bootstrap";
 import "./NavBar.scss";
 import Logo from "../../../../Assets/images/logo.png";
 
 // import Icons
-import {
-  IoSearchOutline,
-  IoCartOutline,
-  IoPersonOutline,
-  IoListOutline,
-} from "react-icons/io5";
+import { IoSearchOutline, IoCartOutline, IoListOutline } from "react-icons/io5";
 
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
 
-import { AuthModal, Login, Register } from "../../../index";
-import { logout } from "../../../../store/authSlice";
-import { toast } from "react-toastify";
-
-import avatar from "../../../../Assets/images/avatar.svg";
 import Cart from "../Cart";
-import { openModal } from "../../../../store/modalSlice";
+import AvatarUi from "./AvatarUi";
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
-  const { user, isLoggedIn } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
-  const [modalShow, setModalShow] = useState(false);
-  const [signToggle, setSignToggle] = useState(true);
-
-  const handleLogout = () => {
-    setTimeout(() => {
-      dispatch(logout());
-      toast.info("logout successful!");
-    }, [2000]);
-  };
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
     <Navbar bg="light" expand="lg" className="navbar-shadow">
       {/* container */}
-      <div className="container px-xl-3 flex-sm-nowrap">
+      <div className="container">
         <Button
           className="navbar-toggler btn__toggle border-0 text-black ms-n2 me-4"
           onClick={() => setShowMenu(true)}
@@ -72,7 +52,11 @@ export default function NavBar() {
         {/* Right Box-icon */}
         <div className="d-flex align-items-center order-lg-3 ms-lg-auto">
           <div className="navbar-tool">
-            <a className="navbar-tool-icon-box me-2" href="#!">
+            <a
+              className="navbar-tool-icon-box me-2"
+              href="#!"
+              onClick={() => setShowSearchBar(true)}
+            >
               <IoSearchOutline />
             </a>
           </div>
@@ -93,49 +77,16 @@ export default function NavBar() {
           </div>
           <div className="border-start ms-3 ps-2" style={{ height: 30 }}></div>
 
-          <div className="navbar-tool ms-1 d-sm-flex">
-            {!isLoggedIn ? (
-              <a
-                className="navbar-tool-icon-box "
-                href="#!"
-                onClick={() => dispatch(openModal("Login"))}
-              >
-                <IoPersonOutline /> <span className="fw-bold">Login</span>
-              </a>
-            ) : (
-              <Dropdown className="avatar">
-                <div className="d-flex align-items-center justify-content-center">
-                  <Dropdown.Toggle
-                    as="a"
-                    className="navbar-tool-icon-box d-block rounded-circle"
-                  >
-                    <img className="avatar-img" src={avatar} alt="avtar" />
-                  </Dropdown.Toggle>
-                  {isLoggedIn && (
-                    <span className="avatar-name fw-bold ms-2">
-                      {user.firstName + " " + user.lastName}
-                    </span>
-                  )}
-                </div>
-
-                <Dropdown.Menu
-                  className="shadow-sm rounded-1 border-0 w-50"
-                  style={{ minWidth: "15rem" }}
-                >
-                  <Dropdown.Item href="#action3">Profile</Dropdown.Item>
-                  <Dropdown.Item href="#action4">Settings</Dropdown.Item>
-                  <div className="pb-2 border-bottom"></div>
-                  <Dropdown.Item href="#!" onClick={() => handleLogout()}>
-                    Logout
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            )}
-          </div>
+          {/* AvatarUi */}
+          <AvatarUi />
         </div>
         {/* Right Box-icon:END */}
       </div>
       {/* container:END */}
+
+      {/* Search Bar */}
+      <SearchBar show={showSearchBar} hide={setShowSearchBar} />
+      {/* Search Bar */}
 
       {/* Right Sidebar[Cart] */}
       <Cart
