@@ -26,6 +26,7 @@ import {
   Shipping,
   Payment,
   OrderPlaced,
+  CustomerService,
 } from "../Pages";
 
 import { ToastContainer } from "react-toastify";
@@ -76,6 +77,7 @@ function App() {
               <Routes key={location.pathname} location={location}>
                 <Route path="/" element={<Home isLoading={isLoading} />} />
                 <Route path="about" element={<About />} />
+                <Route path="customer-service" element={<CustomerService />} />
                 <Route path="checkout" element={<Checkout />}>
                   {/* <Route index element={<Navigate to="/checkout/login" />} /> */}
                   {!isLoggedIn ? (

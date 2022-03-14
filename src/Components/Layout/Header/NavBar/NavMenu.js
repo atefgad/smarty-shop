@@ -1,9 +1,14 @@
 import React from "react";
 import { Nav, Offcanvas } from "react-bootstrap";
-import { IoLogInOutline } from "react-icons/io5";
+import { IoLogInOutline, IoPersonOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../store/authSlice";
+import { openModal } from "../../../../store/modalSlice";
 import MenuList from "../../../MenuList/MenuList";
 
 function NavMenu({ showMenu, setShowMenu }) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       {/* primary Menu_SideBar offcanvas offcanvas-collapse */}
@@ -31,13 +36,29 @@ function NavMenu({ showMenu, setShowMenu }) {
 
         {/* offcanvas-footer */}
         <div className="offcanvas-footer border-3 border-top border-primary">
-          <a
-            className="btn btn-outline-primary border-0 d-block w-100 fw-bold"
-            href="#!"
-          >
-            <IoLogInOutline className="fw-bold me-1" />
-            Sign in
-          </a>
+          {!isLoggedIn ? (
+            <a
+              className="btn btn-outline-primary border-0 rounded-0 d-block w-100 fw-bold"
+              href="#!"
+              onClick={() => dispatch(openModal("Login"))}
+            >
+              <IoPersonOutline className="fw-bold me-1" />
+              Login
+            </a>
+          ) : (
+            <a
+              className="btn btn-outline-primary border-0 rounded-0 d-block w-100 fw-bold"
+              href="#!"
+              onClick={() =>
+                setTimeout(() => {
+                  dispatch(logout());
+                }, [1000])
+              }
+            >
+              <IoLogInOutline className="fw-bold me-1" />
+              logout
+            </a>
+          )}
         </div>
         {/* offcanvas-footer:END */}
       </Offcanvas>

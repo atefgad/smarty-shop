@@ -8,17 +8,18 @@ import avatar from "../../../../Assets/images/avatar.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { IoPersonOutline } from "react-icons/io5";
 import { Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function AvatarUi() {
   const { user, isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigat = useNavigate();
 
-  const handleLogout = () => {
-    setTimeout(() => {
-      dispatch(logout());
-      toast.info("logout successful!");
-    }, [2000]);
-  };
+  // const handleLogout = () => {
+  //   setTimeout(() => {
+  //     dispatch(logout());
+  //   }, [1000]);
+  // };
   return (
     <div className="navbar-tool ms-1 d-sm-flex">
       {!isLoggedIn ? (
@@ -51,10 +52,18 @@ function AvatarUi() {
           >
             <Dropdown.Item href="#!">Profile</Dropdown.Item>
             <Dropdown.Item href="#!">Orders</Dropdown.Item>
-            <Dropdown.Item href="#!">Favorites</Dropdown.Item>
+            <Dropdown.Item href="#!">Wishlist</Dropdown.Item>
             <Dropdown.Item href="#!">Settings</Dropdown.Item>
             <div className="dropdown-divider"></div>
-            <Dropdown.Item href="#!" onClick={() => handleLogout()}>
+            <Dropdown.Item
+              href="#!"
+              onClick={() =>
+                setTimeout(() => {
+                  dispatch(logout());
+                  navigat("/");
+                }, [1000])
+              }
+            >
               Logout
             </Dropdown.Item>
           </Dropdown.Menu>

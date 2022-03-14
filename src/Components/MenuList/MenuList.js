@@ -6,6 +6,7 @@ import {
   IoHomeOutline,
   IoShirtOutline,
   IoBasketOutline,
+  IoGlassesOutline,
 } from "react-icons/io5";
 import { RiCustomerService2Line } from "react-icons/ri";
 import { BsSmartwatch } from "react-icons/bs";
@@ -23,7 +24,11 @@ const links = [
     path: "/category/electronics",
     icon: <BsSmartwatch />,
   },
-  { name: "shop", path: "/shop", icon: <IoBasketOutline /> },
+  {
+    name: "Accessories",
+    path: "/category/jewelery",
+    icon: <IoGlassesOutline />,
+  },
   {
     name: "customer service",
     path: "/customer-service",

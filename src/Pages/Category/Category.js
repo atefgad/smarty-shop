@@ -8,7 +8,7 @@ import "./Category.scss";
 import { ProductCard, Animated, PageTitle } from "../../Components";
 
 import { Page404 } from "../../Pages";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Category() {
   const { products } = useSelector((state) => state.products);
@@ -18,7 +18,7 @@ function Category() {
     (product) => product.category.replace(" ", "_") === catName
   );
 
-  if (Object.values(catFilter).length === 0) return <Page404 />;
+  if (Object.values(catFilter).length <= 0) return <Page404 />;
 
   return (
     <Animated>

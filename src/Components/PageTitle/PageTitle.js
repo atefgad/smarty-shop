@@ -4,7 +4,7 @@ import { IoHome } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "./PageTitle.scss";
 
-function PageTitle({ name = "page-title" }) {
+function PageTitle({ name = "page-title", className }) {
   return (
     <div className="page__title bg-dark pt-4">
       <div className="container d-lg-flex justify-content-between py-2 py-lg-3">
@@ -21,7 +21,9 @@ function PageTitle({ name = "page-title" }) {
           </Breadcrumb>
         </div>
         <div className="order-lg-1 pe-lg-4 text-center text-lg-start">
-          <h1 className="h3 text-light mb-0">{name}</h1>
+          <h1 className={`h3 text-light mb-0 ${className ? className : ""}`}>
+            {name}
+          </h1>
         </div>
       </div>
     </div>

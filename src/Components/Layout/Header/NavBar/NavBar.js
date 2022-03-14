@@ -6,7 +6,12 @@ import "./NavBar.scss";
 import Logo from "../../../../Assets/images/logo.png";
 
 // import Icons
-import { IoSearchOutline, IoCartOutline, IoListOutline } from "react-icons/io5";
+import {
+  IoSearchOutline,
+  IoCartOutline,
+  IoListOutline,
+  IoMenu,
+} from "react-icons/io5";
 
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
@@ -30,7 +35,7 @@ export default function NavBar() {
           className="navbar-toggler btn__toggle border-0 text-black ms-n2 me-4"
           onClick={() => setShowMenu(true)}
         >
-          <IoListOutline style={{ fontSize: "1.8rem" }} />
+          <IoMenu style={{ fontSize: "1.8rem" }} />
         </Button>
 
         <Link
