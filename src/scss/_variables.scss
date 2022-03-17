@@ -17,9 +17,11 @@ $gray-900: #37384e !default;
 $black: #000 !default;
 
 // Brand colors
-$primary: #f7731e !default;
+$primary: #ff6464 !default;
+$main-color: #ff6464;
+$second: #ffbb2e;
 
-$secondary: $gray-100 !default;
+$secondary: #f1f7fc !default;
 $info: #6a9bf4 !default;
 $success: #16c995 !default;
 $warning: #ffb15c !default;
@@ -42,6 +44,7 @@ $cyan: #0dcaf0 !default;
 
 // Adding new color to default Bootstrap's $theme-colors map
 $theme-colors: ('primary': $primary,
+    'second': $second,
     'secondary': $secondary,
     'success': $success,
     'info': $info,
@@ -62,6 +65,7 @@ $theme-colors: ('primary': $primary,
 
 // Faded colors map
 $theme-faded-colors: ('primary': rgba($primary, .08),
+    'second': rgba($second, .08),
     'success': rgba($success, .08),
     'info': rgba($info, .08),
     'warning': rgba($warning, .08),
