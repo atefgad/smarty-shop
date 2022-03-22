@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import EmptyBasket from "../../../Assets/images/empty-basket.gif";
+import EmptyBasket from "../../../Assets/images/icons/empty-basket.gif";
 
 function NoCartItems({ setCloseCart }) {
   return (

@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getLocalStorage, setLocalStorage } from "./functions";
+
+import { toast } from "react-toastify";
 
 const initialState = {
-  cartItems: [],
+  cartItems: getLocalStorage("cartItems")
+    ? JSON.parse(getLocalStorage("cartItems"))
+    : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
@@ -26,9 +31,9 @@ const cartSlice = createSlice({
             ? parseInt(action.payload.quantity)
             : state.cartItems[itemIndex].quantity + 1;
 
-        // toast.info(
-        //   `${action.payload.title.substr(0, 20)}... increased quantity`
-        // );
+        toast.info(
+          `${action.payload.title.substr(0, 20)}... increased quantity`
+        );
       } else {
         const productData = {
           ...action.payload,
@@ -38,9 +43,11 @@ const cartSlice = createSlice({
               : 1,
         };
         state.cartItems.push(productData);
+
+        toast.success(`${action.payload.title.substr(0, 25)}... added to cart`);
       }
       // localStorage.setItem("cart", JSON.stringify(state.cartItems));
-      // setLocalStorage("cartItems", state.cartItems);
+      setLocalStorage("cartItems", state.cartItems);
     },
     // removeCartItem
     removeCartItem: (state, action) => {
@@ -49,7 +56,9 @@ const cartSlice = createSlice({
       );
 
       state.cartItems = cartItemsFiltered;
-      // setLocalStorage("cartItems", state.cartItems);
+      setLocalStorage("cartItems", state.cartItems);
+
+      toast.error(`${action.payload.title.substr(0, 25)}... removed from cart`);
     },
     // increaseCart
     increaseCart: (state, action) => {
@@ -75,7 +84,11 @@ const cartSlice = createSlice({
         );
 
         state.cartItems = cartItemsFiltered;
-        // setLocalStorage("cartItems", state.cartItems);
+        setLocalStorage("cartItems", state.cartItems);
+
+        toast.error(
+          `${action.payload.title.substr(0, 25)}... removed from cart`
+        );
       }
     },
     // cartTotalPrice
