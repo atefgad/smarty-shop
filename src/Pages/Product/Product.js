@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
 // import Bootstrap Styles
 import { Col, Container, Image, Row } from "react-bootstrap";
 
 // import Icons
 import {
-  IoHeartOutline,
   IoLogoFacebook,
   IoLogoGoogle,
   IoLogoTwitter,
@@ -37,12 +35,11 @@ function Product() {
   const { products } = useSelector((state) => state.products);
 
   const [qty, setQty] = useState(1);
+  const [size, setSize] = useState("s");
 
   const [Clicked, setClicked] = useState(false);
 
   const [active, setActive] = useState(false);
-
-  // console.log("qnt ", qnt);
 
   const getProduct = products.find((product) => {
     return product.id === parseInt(productId);
@@ -136,9 +133,15 @@ function Product() {
                       className="form-check-input"
                       type="radio"
                       name="size"
-                      id="s12_5"
+                      id={`s-${getProduct.id}`}
+                      value="s"
+                      checked={size === "s"}
+                      onChange={(e) => setSize(e.target.value)}
                     />
-                    <label className="form-option-label" htmlFor="s12_5">
+                    <label
+                      className="form-option-label"
+                      htmlFor={`s-${getProduct.id}`}
+                    >
                       S
                     </label>
                   </div>
@@ -147,9 +150,15 @@ function Product() {
                       className="form-check-input"
                       type="radio"
                       name="size"
-                      id="s15_5"
+                      id={`m-${getProduct.id}`}
+                      value="m"
+                      checked={size === "m"}
+                      onChange={(e) => setSize(e.target.value)}
                     />
-                    <label className="form-option-label" htmlFor="s15_5">
+                    <label
+                      className="form-option-label"
+                      htmlFor={`m-${getProduct.id}`}
+                    >
                       M
                     </label>
                   </div>
@@ -158,10 +167,16 @@ function Product() {
                       className="form-check-input"
                       type="radio"
                       name="size"
-                      id="s155"
+                      id={`l-${getProduct.id}`}
                       disabled
+                      value="l"
+                      checked={size === "l"}
+                      onChange={(e) => setSize(e.target.value)}
                     />
-                    <label className="form-option-label" htmlFor="s155">
+                    <label
+                      className="form-option-label"
+                      htmlFor={`l-${getProduct.id}`}
+                    >
                       l
                     </label>
                   </div>
@@ -186,7 +201,7 @@ function Product() {
                     handleAddToCart({
                       ...getProduct,
                       quantity: qty,
-                      size: "L",
+                      size,
                     })
                   }
                   qty={qty}
