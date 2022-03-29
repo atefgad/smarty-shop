@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { IoSearchSharp } from "react-icons/io5";
 import { Animated, PageTitle } from "../../Components";
@@ -12,6 +12,8 @@ import {
   product_help,
   payment,
 } from "../../constants";
+import CustomerCardItem from "./CustomerCardItem";
+import { toast } from "react-toastify";
 
 // Icons
 
@@ -54,6 +56,31 @@ const items = [
 ];
 
 function Customer() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [result, setResult] = useState(items);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    if (searchTerm !== "") {
+      const result = items.filter(
+        (item) =>
+          // item.title.toLowerCase().includes(term.toLowerCase())
+          item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+      );
+      if (result.length > 0) {
+        setResult(result);
+      } else {
+        setResult(items);
+      }
+    }
+  };
+  // let data = serviceData !== undefined ? serviceData : items;
+
+  const filterdResult = items.filter(
+    (item) =>
+      // item.title.toLowerCase().includes(term.toLowerCase())
+      item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+  );
   return (
     <Animated>
       <PageTitle className=" d-none d-lg-block" name="Customer Service" />
@@ -73,45 +100,37 @@ function Customer() {
                   className="form-control rounded ps-5 py-4 shadow"
                   type="text"
                   placeholder="Ask your question..."
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </form>
             </div>
           </div>
         </div>
         <Container className="mt-5">
-          <h4 className="mb-3">Some things you can do here</h4>
-          <Row className="d-flex align-items-center">
-            {items.map((item, index) => (
-              <motion.div
-                className="col-md-4"
-                key={index}
-                initial={{
-                  opacity: 0,
-                  translateX: index % 2 === 0 ? -50 : 50,
-                  translateY: -50,
-                }}
-                animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.3 }}
-              >
-                <div className="border rounded d-flex align-items-center p-3 mb-3 shadow-sm ">
-                  <div className="me-2">
-                    <img
-                      src={item.icon}
-                      alt={item.title}
-                      width="60"
-                      height="60"
-                    />
-                  </div>
-                  <div className="t">
-                    <a href="#!">
-                      <h3 className="fs-md text-gray mb-1">{item.title}</h3>
-                      <p className="fs-xs text-muted">{item.description}</p>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </Row>
+          {!filterdResult.length ? (
+            <h4 className="mb-3">No results found :( </h4>
+          ) : (
+            <React.Fragment>
+              <h4 className="mb-3">Some things you can do here</h4>
+              <Row className="d-flex align-items-center">
+                {filterdResult.map((item, index) => (
+                  <motion.div
+                    className="col-md-4"
+                    key={index}
+                    initial={{
+                      opacity: 0,
+                      translateX: index % 2 === 0 ? -50 : 50,
+                      translateY: -50,
+                    }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.3 }}
+                  >
+                    <CustomerCardItem item={item} />
+                  </motion.div>
+                ))}
+              </Row>
+            </React.Fragment>
+          )}
         </Container>
       </div>
     </Animated>

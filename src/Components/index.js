@@ -24,6 +24,10 @@ import HeroSection from "./HeroSection/HeroSection";
 import Loading from "./Loading/Loading";
 import ProductCard from "./ProductCard/ProductCard";
 import PageTitle from "./PageTitle/PageTitle";
+
+import ColorOption from "./ColorOption";
+import SizeOption from "./SizeOption";
+
 import SectionHead from "./SectionTitle/SectionHead";
 import ProductsSlides from "./Swiper/ProductsSlides";
 import Animated from "./Animated/Animated";
@@ -59,6 +63,8 @@ export {
   HeroSection,
   Loading,
   ProductCard,
+  SizeOption,
+  ColorOption,
   PageTitle,
   SectionHead,
   ProductsSlides,

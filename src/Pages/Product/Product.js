@@ -22,9 +22,11 @@ import "./Product.scss";
 import {
   AddToCartBtn,
   Animated,
+  ColorOption,
   HeartIcon,
   ProductsSlides,
   SectionHead,
+  SizeOption,
 } from "../../Components";
 
 import { addToCart } from "../../store/cartSlice";
@@ -35,7 +37,8 @@ function Product() {
   const { products } = useSelector((state) => state.products);
 
   const [qty, setQty] = useState(1);
-  const [size, setSize] = useState("s");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
 
   const [Clicked, setClicked] = useState(false);
 
@@ -103,8 +106,16 @@ function Product() {
               <div className="d-flex align-items-center justify-content-between mb-3">
                 {/* Price */}
                 <div className="py-4">
-                  <del className="text-muted me-2">$140.00</del>
-                  <span className="h4 mb-0">${getProduct.price}</span>
+                  {getProduct.newPrice !== null ? (
+                    <React.Fragment>
+                      <del className="text-muted me-2">${getProduct.price}</del>
+                      <span className="h4 mb-0">${getProduct.newPrice}</span>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <span className="h4 mb-0">${getProduct.price}</span>
+                    </React.Fragment>
+                  )}
                 </div>
                 {/* star-rating */}
                 <div className="star-rating mb-3">
@@ -119,68 +130,46 @@ function Product() {
               </div>
               {/* Product Options */}
               <div className="product__options">
+                {/* Choose Color */}
+                {getProduct.color.length > 0 ? (
+                  <React.Fragment>
+                    <div className="d-flex align-items-center  border-2 border-danger justify-content-start mb-2">
+                      <span className="text-muted">Choose Color</span>
+                    </div>
+
+                    {/* Color */}
+                    <ColorOption
+                      colorItems={getProduct.color}
+                      color={color}
+                      setColor={setColor}
+                    />
+                  </React.Fragment>
+                ) : (
+                  ""
+                )}
+
                 {/* Choose size */}
-                <div className="d-flex align-items-center justify-content-between mb-3">
-                  <span className="text-muted">Choose size</span>
-                  <a className="fs-sm" href="#!">
-                    <FiBarChart2 />
-                    Size chart
-                  </a>
-                </div>
-                <div className="d-block">
-                  <div className="form-check form-option form-option-size form-check-inline mb-2">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="size"
-                      id={`s-${getProduct.id}`}
-                      value="s"
-                      checked={size === "s"}
-                      onChange={(e) => setSize(e.target.value)}
-                    />
-                    <label
-                      className="form-option-label"
-                      htmlFor={`s-${getProduct.id}`}
-                    >
-                      S
-                    </label>
-                  </div>
-                  <div className="form-check form-option form-option-size form-check-inline mb-2">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="size"
-                      id={`m-${getProduct.id}`}
-                      value="m"
-                      checked={size === "m"}
-                      onChange={(e) => setSize(e.target.value)}
-                    />
-                    <label
-                      className="form-option-label"
-                      htmlFor={`m-${getProduct.id}`}
-                    >
-                      M
-                    </label>
-                  </div>
-                  <div className="form-check form-option form-option-size form-check-inline mb-2">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="size"
-                      id={`l-${getProduct.id}`}
-                      disabled
-                      value="l"
-                      checked={size === "l"}
-                      onChange={(e) => setSize(e.target.value)}
-                    />
-                    <label
-                      className="form-option-label"
-                      htmlFor={`l-${getProduct.id}`}
-                    >
-                      l
-                    </label>
-                  </div>
-                </div>
+                {getProduct.size.length > 0 ? (
+                  <React.Fragment>
+                    <div className="d-flex align-items-center justify-content-between mb-3">
+                      <span className="text-muted">Choose size</span>
+                      <a className="fs-sm" href="#!">
+                        <FiBarChart2 />
+                        Size chart
+                      </a>
+                    </div>
+                    <div className="d-block">
+                      {/* Size */}
+                      <SizeOption
+                        sizeItems={getProduct.size}
+                        size={size}
+                        setSize={setSize}
+                      />
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  ""
+                )}
               </div>
 
               {/* Buttons Box*/}

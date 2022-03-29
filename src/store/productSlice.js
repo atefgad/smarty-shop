@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// import API_URL from "../data/products.json";
-const API_URL = "https://fakestoreapi.com/products";
+const API_URL = "http://localhost:3005/products";
+// const API_URL = "https://fakestoreapi.com/products";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",

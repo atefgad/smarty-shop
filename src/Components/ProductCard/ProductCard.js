@@ -61,8 +61,23 @@ function ProductCard({ product }) {
               {/*` ${product.title.substr(0, 30)} ...`*/}
             </Link>
           </h3>
-          {/* <del className="fs-sm text-muted me-1">$130.00</del> */}
-          <span className="text-heading fw-bold">${product.price}</span>
+          {/* <del className="fs-sm text-muted me-1">$130.00</del> 
+        <span className="text-heading fw-bold">${product.price}</span>
+        */}
+
+          {/* Price */}
+          <div className="py-1">
+            {product.newPrice !== null ? (
+              <React.Fragment>
+                <del className="text-muted me-2">${product.price}</del>
+                <span className="h5 mb-0">${product.newPrice}</span>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <span className="h5 mb-0">${product.price}</span>
+              </React.Fragment>
+            )}
+          </div>
         </div>
         <div className="card-footer">
           <div className="star-rating mt-n1">

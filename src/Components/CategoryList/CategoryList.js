@@ -29,7 +29,7 @@ function CategoryList() {
 
       <Link
         className="icon-box card flex-row align-items-center card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4"
-        to="/category/jewelery"
+        to="/category/accessories"
       >
         <div className="icon-box-media bg--orange text-orange rounded-circle me-2">
           <IoGlassesOutline />

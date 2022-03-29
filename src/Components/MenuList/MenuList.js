@@ -26,7 +26,7 @@ const links = [
   },
   {
     name: "Accessories",
-    path: "/category/jewelery",
+    path: "/category/accessories",
     icon: <IoGlassesOutline />,
   },
   {
