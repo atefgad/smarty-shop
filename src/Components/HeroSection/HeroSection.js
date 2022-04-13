@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 // Import bootstrap components
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -19,9 +19,9 @@ function HeroSection() {
     <div className="hero__section position-relative gradient-3 pt-5 pt-lg-6 pb-lg-7 mb-7">
       <Container>
         {/* heroSection Main-Slider */}
-        <Row className="d-flex align-items-center justify-content-center">
+        <Row className="d-flex align-items-center  justify-content-center">
           <motion.div
-            className="col-lg-4 offset-1 mb-sm-5"
+            className="col-lg-4"
             initial={{
               opacity: 0,
               translateX: -70,

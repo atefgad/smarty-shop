@@ -22,14 +22,15 @@ import "./Product.scss";
 import {
   AddToCartBtn,
   Animated,
-  ColorOption,
+  FormCheckInput,
   HeartIcon,
   ProductsSlides,
   SectionHead,
-  SizeOption,
+  Select,
 } from "../../Components";
 
 import { addToCart } from "../../store/cartSlice";
+import { toast } from "react-toastify";
 
 function Product() {
   const dispatch = useDispatch();
@@ -59,11 +60,15 @@ function Product() {
 
   // handleAddToCart
   const handleAddToCart = (date) => {
-    dispatch(addToCart(date));
-    setClicked(true);
-    setTimeout(() => {
-      setClicked(false);
-    }, 3000);
+    if (size !== "" || color !== "") {
+      dispatch(addToCart(date));
+      setClicked(true);
+      setTimeout(() => {
+        setClicked(false);
+      }, 3000);
+    } else {
+      toast.warn("Please Choose color and size");
+    }
   };
 
   return (
@@ -130,60 +135,58 @@ function Product() {
               </div>
               {/* Product Options */}
               <div className="product__options">
-                {/* Choose Color */}
-                {getProduct.color.length > 0 ? (
+                {/* color */}
+                {getProduct.color.length > 0 && (
                   <React.Fragment>
-                    <div className="d-flex align-items-center  border-2 border-danger justify-content-start mb-2">
-                      <span className="text-muted">Choose Color</span>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <span className="text-muted">Choose color</span>
                     </div>
-
-                    {/* Color */}
-                    <ColorOption
-                      colorItems={getProduct.color}
-                      color={color}
-                      setColor={setColor}
-                    />
+                    {getProduct.color.map((item, index) => (
+                      <FormCheckInput
+                        key={index}
+                        item={item}
+                        circle
+                        sm
+                        checkedVal={color}
+                        change={setColor}
+                      />
+                    ))}
                   </React.Fragment>
-                ) : (
-                  ""
                 )}
 
                 {/* Choose size */}
-                {getProduct.size.length > 0 ? (
+                {getProduct.size.length > 0 && (
                   <React.Fragment>
-                    <div className="d-flex align-items-center justify-content-between mb-3">
+                    <div className="d-flex align-items-center justify-content-between mb-2 mt-2">
                       <span className="text-muted">Choose size</span>
                       <a className="fs-sm" href="#!">
                         <FiBarChart2 />
                         Size chart
                       </a>
                     </div>
+                    {/* Size */}
                     <div className="d-block">
-                      {/* Size */}
-                      <SizeOption
-                        sizeItems={getProduct.size}
-                        size={size}
-                        setSize={setSize}
-                      />
+                      {getProduct.size.map((item, index) => (
+                        <FormCheckInput
+                          key={index}
+                          item={item}
+                          checkedVal={size}
+                          change={setSize}
+                        />
+                      ))}
                     </div>
                   </React.Fragment>
-                ) : (
-                  ""
                 )}
               </div>
 
               {/* Buttons Box*/}
               <div className="p-sm-fixed d-flex align-items-center justify-content-center mt-4 mb-3">
                 {/* select Qty Box*/}
-                <select
-                  className="form-select me-3"
+                <Select
+                  qty={setQty}
+                  options={getProduct.inStock}
                   style={{ width: "5rem", height: "60px" }}
-                  onChange={(e) => setQty(e.target.value)}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+                />
                 {/* ADD TO CART[btn] */}
                 <AddToCartBtn
                   onClick={() =>

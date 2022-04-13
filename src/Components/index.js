@@ -16,6 +16,8 @@ import Login from "./Forms/Login";
 import Register from "./Forms/Register";
 
 import AddPaymentCard from "./Forms/AddPaymentCard";
+import Select from "./Forms/Select";
+import FormCheckInput from "./Forms/FormCheckInput";
 
 import CartListItem from "./CartListItem/CartListItem";
 import CategoryList from "./CategoryList/CategoryList";
@@ -58,6 +60,8 @@ export {
   Login,
   Register,
   AddPaymentCard,
+  Select,
+  FormCheckInput,
   CartListItem,
   CategoryList,
   HeroSection,

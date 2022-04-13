@@ -82,7 +82,7 @@ function CartListItem({ cartItem, setCloseCart }) {
                 </OverlayTrigger>
                 {/* Quantity[INPUT] */}
                 <input
-                  className="form-control form-control-sm px-2 border-primary rounded-2"
+                  className="form-control form-control-sm px-2 rounded-2"
                   type="number"
                   style={{
                     maxWidth: "3rem",

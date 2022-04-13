@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // import Bootstrap Components
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -14,10 +14,12 @@ import "./ProductCard.scss";
 
 import { addToCart } from "../../store/cartSlice";
 import { addWishItem, removeWishItem } from "../../store/wishlistSlice";
+import FormCheckInput from "../Forms/FormCheckInput";
 
 function ProductCard({ product }) {
   // const { wishList } = useSelector((state) => state.wish);
   const [toggleFav, setToggleFav] = useState(false);
+  const [color, setColor] = useState("s");
 
   // const wlist = wishList.map((item) => item.id === 2);
 
@@ -42,9 +44,31 @@ function ProductCard({ product }) {
   return (
     <React.Fragment>
       <div className="card card-product card-shadow ">
-        <Link className="card-img" to={`/product/${product.id}`}>
-          <img src={product.image} alt={product.title} />
-        </Link>
+        <div className="card__Pro__image">
+          <Link className="card-img" to={`/product/${product.id}`}>
+            <img src={product.image} alt={product.title} />
+          </Link>
+          {/* color */}
+          {product.color.length > 0 && (
+            <div
+              className={`product__options ${
+                product.color.length === 1 ? "" : "bg-gray-300"
+              }`}
+            >
+              {product.color.map((item, index) => (
+                <FormCheckInput
+                  key={index}
+                  item={item}
+                  circle
+                  sm
+                  checkedVal={color}
+                  change={setColor}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="card-body">
           <Link
             className="meta-link fs-xs mb-2"

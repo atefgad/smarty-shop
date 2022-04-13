@@ -11,7 +11,6 @@ function ColorOption({ colorItems, color, setColor }) {
           <input
             className="form-check-input"
             type="radio"
-            name="color"
             id={`#${item}_${index}`}
             value={item}
             checked={color === item}

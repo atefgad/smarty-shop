@@ -8,6 +8,7 @@ import logo from "../Assets/images/logo.png";
 import emptyBasket from "../Assets/images/icons/empty-basket.gif";
 import logoAnimation from "../Assets/images/logo-animate.gif";
 import circle from "../Assets/images/circle.svg";
+import women from "../Assets/images/girl.png";
 import fashionWomen from "../Assets/images/girl4.png";
 import fashionMan from "../Assets/images/man.png";
 
@@ -25,6 +26,7 @@ const images = {
   emptyBasket,
   logoAnimation,
   circle,
+  women,
   fashionWomen,
   fashionMan,
   en,
