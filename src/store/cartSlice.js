@@ -9,6 +9,7 @@ const initialState = {
     : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  checkoutProgress: 0,
 };
 
 const cartSlice = createSlice({
@@ -31,8 +32,8 @@ const cartSlice = createSlice({
             ? parseInt(action.payload.quantity)
             : state.cartItems[itemIndex].quantity + 1;
 
-        toast.info(
-          `${action.payload.title.substr(0, 20)}... increased quantity`
+        toast.success(
+          `${action.payload.title.substr(0, 25)}... has been added to cart`
         );
       } else {
         const productData = {
@@ -44,7 +45,9 @@ const cartSlice = createSlice({
         };
         state.cartItems.push(productData);
 
-        toast.success(`${action.payload.title.substr(0, 25)}... added to cart`);
+        toast.success(
+          `${action.payload.title.substr(0, 25)}... has been added to cart`
+        );
       }
       // localStorage.setItem("cart", JSON.stringify(state.cartItems));
       setLocalStorage("cartItems", state.cartItems);
@@ -58,7 +61,9 @@ const cartSlice = createSlice({
       state.cartItems = cartItemsFiltered;
       setLocalStorage("cartItems", state.cartItems);
 
-      toast.error(`${action.payload.title.substr(0, 25)}... removed from cart`);
+      toast.success(
+        `${action.payload.title.substr(0, 25)}... has been removed from cart`
+      );
     },
     // increaseCart
     increaseCart: (state, action) => {
@@ -86,8 +91,8 @@ const cartSlice = createSlice({
         state.cartItems = cartItemsFiltered;
         setLocalStorage("cartItems", state.cartItems);
 
-        toast.error(
-          `${action.payload.title.substr(0, 25)}... removed from cart`
+        toast.success(
+          `${action.payload.title.substr(0, 25)}... has been removed from cart`
         );
       }
     },

@@ -6,12 +6,7 @@ import "./NavBar.scss";
 import Logo from "../../../../Assets/images/logo.png";
 
 // import Icons
-import {
-  IoSearchOutline,
-  IoCartOutline,
-  IoListOutline,
-  IoMenu,
-} from "react-icons/io5";
+import { IoSearchOutline, IoCartOutline, IoMenu } from "react-icons/io5";
 
 import NavMenu from "./NavMenu";
 import MenuList from "../../../MenuList/MenuList";
@@ -73,10 +68,8 @@ export default function NavBar() {
               onClick={() => setShowCart(true)}
             >
               <IoCartOutline />
-              {cartItems.length > 0 ? (
+              {cartItems.length > 0 && (
                 <span className="navbar-tool-badge">{cartItems.length}</span>
-              ) : (
-                <span className="navbar-tool-badge">0</span>
               )}
             </a>
           </div>

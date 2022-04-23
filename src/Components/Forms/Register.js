@@ -120,26 +120,25 @@ function Register() {
               {/* password field */}
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <div className="d-flex align-items-center justify-content-center position-relative">
+                <div className="position-relative">
                   <Field
                     className={`form-control ${
-                      errors.password
-                        ? "is-invalid position-absolute bottom-0"
-                        : null
+                      errors.password ? "is-invalid" : null
                     }`}
                     name="password"
                     type={!showPassword ? "password" : "text"}
                   />
                   {errors.password && touched.password ? (
                     <div className="invalid-feedback">{errors.password}</div>
-                  ) : null}
-                  <a
-                    href="#!"
-                    className="eye_icon"
-                    onClick={() => setshowPassword(!showPassword)}
-                  >
-                    {!showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                  </a>
+                  ) : (
+                    <a
+                      href="#!"
+                      className="eye_icon"
+                      onClick={() => setshowPassword(!showPassword)}
+                    >
+                      {!showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                    </a>
+                  )}
                 </div>
               </Form.Group>
               <div className="text-center mt-5 border-top">

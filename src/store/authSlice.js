@@ -29,8 +29,6 @@ const initialState = {
   message: "",
 };
 
-console.log("user localStorage", initialState.user);
-
 const authSlice = createSlice({
   name: "auth",
   initialState,

@@ -1,0 +1,26 @@
+.UserLogIn {
+  width: 75%;
+
+  button {
+    &.active {
+      color: #fff !important;
+      &::before {
+        transition: 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        height: 40px;
+      }
+    }
+  }
+  .form {
+    width: 100%;
+  }
+
+  .eye_icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}

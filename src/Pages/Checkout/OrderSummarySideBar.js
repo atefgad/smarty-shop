@@ -5,34 +5,42 @@ import { motion } from "framer-motion";
 // import Components
 import { CartListItem, NoCartItems } from "../../Components";
 
-function OrderSummarySideBar() {
+function OrderSummarySideBar({ className, isHide }) {
   const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
 
   return (
-    <React.Fragment>
+    <div
+      className={`col-lg-4 order__sidebar bg-secondary pt-4 pb-4 ps-lg-4 shadow-lg rounded-2 ${
+        isHide ? "" : "height-500"
+      }`}
+    >
       <div className="border-bottom py-3 pb-sm-2 mb-2">
         <h2 className="h5 text-capitalize text-center">Order summary</h2>
       </div>
       {cartItems.length > 0 ? (
         <React.Fragment>
-          <div className="cart__summary__items pt-1">
-            {cartItems.map((item, i) => (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  translateX: 50,
-                  translateY: 50,
-                }}
-                animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-                exit={{ opacity: 0, duration: 0.5 }}
-                transition={{ duration: 0.3, delay: i * 0.3 }}
-                key={item.id}
-              >
-                <CartListItem cartItem={item} />
-              </motion.div>
-            ))}
-          </div>
-          <hr className="mt-2 mb-4" />
+          {isHide ? (
+            <React.Fragment>
+              <div className="cart__summary__items pt-1">
+                {cartItems.map((item, i) => (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      translateX: 50,
+                      translateY: 50,
+                    }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    exit={{ opacity: 0, duration: 0.5 }}
+                    transition={{ duration: 0.3, delay: i * 0.3 }}
+                    key={item.id}
+                  >
+                    <CartListItem cartItem={item} />
+                  </motion.div>
+                ))}
+              </div>
+              <hr className="mt-2 mb-4" />
+            </React.Fragment>
+          ) : null}
           {/* order subtotal */}
           <div className="d-flex justify-content-between mb-3">
             <span className="h6 mb-0">Subtotal:</span>
@@ -87,7 +95,7 @@ function OrderSummarySideBar() {
             </div>
             <button
               className="btn btn-primary d-block w-100 text-capitalize"
-              type="submit"
+              type="button"
             >
               Apply coupon code
             </button>
@@ -96,7 +104,7 @@ function OrderSummarySideBar() {
       ) : (
         <NoCartItems />
       )}
-    </React.Fragment>
+    </div>
   );
 }
 

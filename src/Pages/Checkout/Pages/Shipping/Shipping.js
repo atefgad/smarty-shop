@@ -1,8 +1,12 @@
 import React from "react";
+import { NextBtn, PrevBtn } from "../../../../Components/Buttons";
 
-function Shipping() {
+function Shipping({ setActive }) {
+  const handleNextBtn = () => {
+    setActive(2);
+  };
   return (
-    <div className="row mb-4">
+    <div className="row mt-2 mb-4">
       <h4 className="mb-3 text-capitalize">Shipping address</h4>
       <div className="col-sm-6 mb-3 pb-1">
         <label className="form-label" htmlFor="ch-fn">
@@ -86,6 +90,15 @@ function Shipping() {
           Email address<sup className="text-danger ms-1">*</sup>
         </label>
         <input className="form-control" type="email" id="ch-email" />
+      </div>
+      {/* Navigation (Prev && Next) */}
+      <div className="navigation__bnts pt-4 mt-3">
+        <div className="w-50 pe-3">
+          <PrevBtn disabled />
+        </div>
+        <div className="w-50 pe-3">
+          <NextBtn name="next" onClick={handleNextBtn} />
+        </div>
       </div>
     </div>
   );

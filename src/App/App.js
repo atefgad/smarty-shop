@@ -21,11 +21,6 @@ import {
   Checkout,
   About,
   Page404,
-  //checkout sub pages
-  UserLogIn,
-  Shipping,
-  Payment,
-  OrderPlaced,
   CustomerService,
 } from "../Pages";
 
@@ -78,17 +73,7 @@ function App() {
                 <Route path="/" element={<Home isLoading={isLoading} />} />
                 <Route path="about" element={<About />} />
                 <Route path="customer-service" element={<CustomerService />} />
-                <Route path="checkout" element={<Checkout />}>
-                  {/* <Route index element={<Navigate to="/checkout/login" />} /> */}
-                  {!isLoggedIn ? (
-                    <Route index element={<UserLogIn />} />
-                  ) : (
-                    <Route element={<Shipping />} />
-                  )}
-                  <Route path="shipping" index element={<Shipping />} />
-                  <Route path="payment" element={<Payment />} />
-                  <Route path="order-placed" element={<OrderPlaced />} />
-                </Route>
+                <Route path="checkout" element={<Checkout />} />
                 <Route path="category/:catName" element={<Category />} />
                 <Route path="product/:productId" element={<Product />} />
                 <Route path="*" element={<Page404 />} />

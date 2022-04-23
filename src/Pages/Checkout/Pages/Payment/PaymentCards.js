@@ -27,7 +27,7 @@ function PaymentCards() {
           <img className="img-fluid" src={visa} alt="visa" />
         </div>
         <div className="col-md-7 col-8">
-          <input type="text" disabled placeholder="**** **** **** 4296" />
+          <input type="text" placeholder="**** **** **** 4296" disabled />
         </div>
         <div className="d-none d-md-block col-md-3">
           <a href="#!">Select card</a>

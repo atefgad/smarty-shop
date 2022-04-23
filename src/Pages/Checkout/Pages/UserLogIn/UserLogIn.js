@@ -1,34 +1,43 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 
 // import Components
-import { openModal } from "../../../../store/modalSlice";
+import Login from "./Login";
+import Register from "./Register";
 
-function UserLogIn() {
-  const dispatch = useDispatch();
+import "./styles.scss";
+
+function UserLogIn({ setActive }) {
+  const [show, setShow] = useState("login");
+
   return (
-    <div className="mb-5 mt-6">
-      <div className="d-flex justify-content-center mb-3">
-        <h3 className="text-dark mb-1">
-          you need to an account to continue...
-        </h3>
-      </div>
+    <div className="UserLogIn mb-5 mt-4">
       <div className="d-flex align-items-center justify-content-center">
         <button
-          className=" btn pb-0 ms-2 fs-5 fw-bold text-dark border-text"
-          onClick={() => dispatch(openModal("Login"))}
+          className={`btn pb-0 fw-bold fs-5  text-dark border-text ${
+            show === "login" && "active"
+          }`}
+          onClick={() => setShow("login")}
         >
           Login
         </button>
-        <span className="mx-3 fw-bold fs-4 d-block bg-gray-200 p-3 rounded-2">
-          or
-        </span>
+        <div className="btn btn-primary rounded-pill border-3 border-secondary">
+          Or
+        </div>
         <button
-          className="btn pb-0 fw-bold fs-5 text-dark border-text"
-          onClick={() => dispatch(openModal("Register"))}
+          className={`btn pb-0 fw-bold fs-5 text-dark border-text ${
+            show === "register" && "active"
+          }`}
+          onClick={() => setShow("register")}
         >
           Register
         </button>
+      </div>
+
+      <hr className="hr" />
+
+      <div className="mt-5">
+        <Login show={show} setActive={setActive} />
+        <Register show={show} setActive={setActive} />
       </div>
     </div>
   );

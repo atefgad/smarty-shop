@@ -20,11 +20,6 @@ function Cart({ cartTotalAmount, cartItems, showCart, setShowCart }) {
         {/* offcanvas-header */}
         <Offcanvas.Header closeButton className="navbar-shadow">
           <Offcanvas.Title className="mt-1 mb-0 position-relative d-flex align-items-center justify-content-between">
-            {cartItems.length > 0 ? (
-              <span className="navbar-tool-badge position-absolute top-0 start-0 translate-middle badge rounded-pill bg-primary">
-                {cartItems.length}
-              </span>
-            ) : null}
             <IoCartOutline className="me-1" />
             shopping cart
           </Offcanvas.Title>

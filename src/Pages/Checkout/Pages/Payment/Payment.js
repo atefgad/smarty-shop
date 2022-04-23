@@ -9,7 +9,16 @@ import {
   IoCashOutline,
 } from "react-icons/io5";
 
-function Payment() {
+import { NextBtn, PrevBtn } from "../../../../Components/Buttons";
+
+function Payment({ setActive, setHide }) {
+  const handleNextBtn = () => {
+    setActive(3);
+    setHide((isHide) => setHide(!isHide));
+  };
+  const handlePrevBtn = () => {
+    setActive(1);
+  };
   return (
     <div className="payment__method">
       <h5 className="h4 mb-3">Choose payment method</h5>
@@ -25,6 +34,7 @@ function Payment() {
                 <IoCardSharp className="me-1 fw-bold fs-4" /> Pay with card
               </Nav.Link>
             </Nav.Item>
+
             <Nav.Item className="w-50">
               <Nav.Link eventKey="payWithCash">
                 <IoCashOutline className="me-1 fw-bold fs-4" /> Pay with cash
@@ -33,9 +43,11 @@ function Payment() {
           </Nav>
           {/* Tabs Content */}
           <Tab.Content>
+            {/* pay With Card */}
             <Tab.Pane eventKey="payWithCard">
               <PaymentCards />
             </Tab.Pane>
+            {/* pay With Cash */}
             <Tab.Pane eventKey="payWithCash">
               <div className="bg-secondary d-flex align-items-center rounded-2 fs-md border border-1 p-2 my-5 ">
                 <IoAlertCircleOutline className="fs-2 me-3" />
@@ -56,6 +68,16 @@ function Payment() {
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>
+      </div>
+
+      {/* Navigation (Prev && Next) */}
+      <div className="navigation__bnts pt-4 mt-3">
+        <div className="w-50 pe-3">
+          <PrevBtn onClick={handlePrevBtn} />
+        </div>
+        <div className="w-50">
+          <NextBtn name="next" onClick={handleNextBtn} />
+        </div>
       </div>
     </div>
   );

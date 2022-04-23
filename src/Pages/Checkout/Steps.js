@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
 
 // import Icons
 import {
@@ -9,58 +8,105 @@ import {
   IoLocationOutline,
   IoPersonOutline,
 } from "react-icons/io5";
+import { FaCheck, FaDotCircle } from "react-icons/fa";
+import { Nav } from "react-bootstrap";
 
-function Steps() {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+function Steps({ activeTab, setActiveTab, IsActive, isLoggedIn }) {
+  switch (IsActive) {
+    case 1:
+      setActiveTab("shipping");
+      break;
+    case 2:
+      setActiveTab("payment");
+      break;
+    case 3:
+      setActiveTab("order_placed");
+      break;
 
-  const location = useLocation();
-
-  console.log("location", location);
+    default:
+      setActiveTab("login");
+  }
 
   return (
-    <div className="steps steps-light pt-2 pb-3 mb-4">
-      {!isLoggedIn ? (
-        <NavLink to="/checkout/login" className="step-item">
+    <Nav variant="pills" className="steps steps-light pt-2 pb-3 mb-4">
+      {!isLoggedIn && (
+        <div
+          eventKey="login"
+          className={`step-item ${activeTab === "login" ? "active" : ""}`}
+        >
           <div className="step-progress">
-            <span className="step-count">1</span>
+            <span className="step-count">
+              <FaDotCircle />
+            </span>
           </div>
           <div className="step-label">
             <IoPersonOutline className="label-icon" />
             Login
           </div>
-        </NavLink>
-      ) : null}
+        </div>
+      )}
 
-      <NavLink to="/checkout/shipping" className="step-item">
+      {/* shipping */}
+      <div
+        eventKey="shipping"
+        className={`step-item ${IsActive >= 1 && "active"}`}
+      >
         <div className="step-progress">
-          <span className="step-count">2</span>
+          <span className="step-count">
+            {IsActive >= 2 ? (
+              <FaCheck className="fw-bold fs-5" />
+            ) : (
+              <FaDotCircle />
+            )}
+          </span>
         </div>
         <div className="step-label">
           <IoLocationOutline className="label-icon" />
-          Shipping address
+          Shipping
         </div>
-      </NavLink>
+      </div>
 
-      <NavLink to="/checkout/payment" className="step-item">
+      {/* payment */}
+      <div
+        eventKey="payment"
+        className={`step-item ${IsActive >= 2 && "active"}`}
+      >
         <div className="step-progress">
-          <span className="step-count">3</span>
+          <span className="step-count">
+            {IsActive >= 3 ? (
+              <FaCheck className="fw-bold fs-5" />
+            ) : (
+              <FaDotCircle />
+            )}
+          </span>
         </div>
         <div className="step-label">
           <IoCardOutline className="label-icon" />
           Payment
         </div>
-      </NavLink>
+      </div>
 
-      <NavLink to="/checkout/order-placed" className="step-item">
+      {/* payment */}
+
+      <div
+        eventKey="order_placed"
+        className={`step-item ${IsActive === 3 && "active"}`}
+      >
         <div className="step-progress">
-          <span className="step-count">4</span>
+          <span className="step-count">
+            {IsActive >= 4 ? (
+              <FaCheck className="fw-bold fs-5" />
+            ) : (
+              <FaDotCircle />
+            )}
+          </span>
         </div>
         <div className="step-label">
           <IoBagCheckOutline className="label-icon" />
           Order Placed
         </div>
-      </NavLink>
-    </div>
+      </div>
+    </Nav>
   );
 }
 
