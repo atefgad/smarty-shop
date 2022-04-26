@@ -15,11 +15,14 @@ import "./ProductCard.scss";
 import { addToCart } from "../../store/cartSlice";
 import { addWishItem, removeWishItem } from "../../store/wishlistSlice";
 import FormCheckInput from "../Forms/FormCheckInput";
+import { toast } from "react-toastify";
 
 function ProductCard({ product }) {
   // const { wishList } = useSelector((state) => state.wish);
   const [toggleFav, setToggleFav] = useState(false);
-  const [color, setColor] = useState("s");
+  const [color, setColor] = useState(product.color[0]);
+  const [size, setSize] = useState("");
+  const [err, setErr] = useState("");
 
   // const wlist = wishList.map((item) => item.id === 2);
 
@@ -27,7 +30,13 @@ function ProductCard({ product }) {
 
   // Add to cart
   const handleAddToCart = (data) => {
-    dispatch(addToCart(data));
+    if (size === "") {
+      setErr("choose a size");
+      toast.error("choose a size");
+    } else {
+      dispatch(addToCart(data));
+      setErr("");
+    }
   };
 
   // handle Add Wishlist
@@ -85,12 +94,29 @@ function ProductCard({ product }) {
               {/*` ${product.title.substr(0, 30)} ...`*/}
             </Link>
           </h3>
-          {/* <del className="fs-sm text-muted me-1">$130.00</del> 
-        <span className="text-heading fw-bold">${product.price}</span>
-        */}
+
+          {/* size */}
+          {product.size && (
+            <div
+              className={`product__size mt-3 ${
+                err !== "" ? "border-2 border-danger" : ""
+              }`}
+            >
+              <span>size: </span>
+              {product.size.map((item, index) => (
+                <FormCheckInput
+                  key={index}
+                  item={item}
+                  sm
+                  checkedVal={size}
+                  change={setSize}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Price */}
-          <div className="py-1">
+          <div className="py-2">
             {product.newPrice !== null ? (
               <React.Fragment>
                 <del className="text-muted me-2">${product.price}</del>
@@ -164,7 +190,17 @@ function ProductCard({ product }) {
             >
               <button
                 className="btn-addtocart"
-                onClick={() => handleAddToCart(product)}
+                onClick={() =>
+                  handleAddToCart({
+                    ...product,
+                    size,
+                    color,
+                    price:
+                      product.newPrice !== null
+                        ? product.newPrice
+                        : product.price,
+                  })
+                }
               >
                 <BsCartPlus />
               </button>

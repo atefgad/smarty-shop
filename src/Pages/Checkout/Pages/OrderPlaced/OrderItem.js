@@ -10,20 +10,24 @@ function OrderItem({ cartItem }) {
           to={`/product/${id}`}
           className="d-inline-block flex-shrink-0 mx-auto me-sm-4"
         >
-          <img src={image} width="160" height="160" alt={title} />
+          <img src={image} width="90" height="90" alt={title} />
         </Link>
         <div className="pt-2">
-          <h4 className="product-title mb-2">
+          <h5 className="product-title mb-2">
             <Link to={`/product/${id}`}>{title}</Link>
-          </h4>
-          <div className="fs-sm">
-            <span className="text-muted fw-bold me-2">Size:</span>
-            {size.join(" - ")}
-          </div>
-          <div className="fs-sm">
-            <span className="text-muted fw-bold me-2">Color:</span>{" "}
-            {color.join(" - ")}
-          </div>
+          </h5>
+          {size && (
+            <div className="fs-sm">
+              <span className="text-muted fw-bold me-2">Size:</span>
+              {size}
+            </div>
+          )}
+          {color && (
+            <div className="fs-sm">
+              <span className="text-muted fw-bold me-2">Color:</span>
+              {color}
+            </div>
+          )}
         </div>
       </div>
 

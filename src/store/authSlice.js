@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-const API_URL = "https://fakestoreapi.com/users";
+// const API_URL = "https://fakestoreapi.com/users";
+// const API_URL = "http://localhost:3005/users";
+const API_URL = "https://my-api-project22.herokuapp.com/users";
 
 export const getUsers = createAsyncThunk(
   "users/getUsers",

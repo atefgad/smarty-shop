@@ -37,17 +37,18 @@ function Product() {
   const { productId } = useParams();
   const { products } = useSelector((state) => state.products);
 
+  const getProduct = products.find((product) => {
+    return product.id === parseInt(productId);
+  });
+
+  const [size, setSize] = useState(getProduct.size[0]);
+  const [color, setColor] = useState(getProduct.color[0]);
+
   const [qty, setQty] = useState(1);
-  const [size, setSize] = useState("");
-  const [color, setColor] = useState("");
 
   const [Clicked, setClicked] = useState(false);
 
   const [active, setActive] = useState(false);
-
-  const getProduct = products.find((product) => {
-    return product.id === parseInt(productId);
-  });
 
   const getProductsByCategory = products.filter((product) => {
     return (
@@ -194,6 +195,7 @@ function Product() {
                       ...getProduct,
                       quantity: qty,
                       size,
+                      color,
                     })
                   }
                   qty={qty}

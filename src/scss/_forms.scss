@@ -1,4 +1,11 @@
 // Custom size / color radios
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: inherit !important;
+  background-color: rgb(245, 92, 92) !important;
+  transition: background-color 0.5s ease-in-out 0s !important;
+}
 
 .form-option {
   padding-left: 0;
@@ -49,6 +56,13 @@
   cursor: pointer;
 }
 
+.product__size {
+  .option-size-sm {
+    .form-option-label {
+      height: auto !important;
+    }
+  }
+}
 .option-size-sm {
   .form-option-label {
     min-width: $form-option-size-width - 1rem;
