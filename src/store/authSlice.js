@@ -44,6 +44,18 @@ const authSlice = createSlice({
           firstname: action.payload.firstName,
           lastname: action.payload.lastName,
         },
+        addresses: [
+          {
+            name: {
+              firstname: "atef",
+              lastname: "gad",
+            },
+            phone: "01156789547",
+            city: "Giza",
+            add_address: "25 ahmed orabi st",
+            is__default: true,
+          },
+        ],
       };
       state.user = userDate;
       state.users.push(userDate);
@@ -80,6 +92,21 @@ const authSlice = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("isLoggedIn");
     },
+    addAddress: (state, action) => {
+      const addressDate = {
+        name: {
+          firstname: action.payload.firstName,
+          lastname: action.payload.lastName,
+        },
+        phone: action.payload.phone,
+        city: action.payload.city,
+        add_address: action.payload.add_address,
+      };
+      state.user.addresses.push(addressDate);
+      // toast.success("address has been added successful");
+
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
   },
   extraReducers: {
     [getUsers.pending]: (state) => {
@@ -94,5 +121,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { register, login, logout } = authSlice.actions;
+export const { register, login, logout, addAddress } = authSlice.actions;
 export default authSlice.reducer;

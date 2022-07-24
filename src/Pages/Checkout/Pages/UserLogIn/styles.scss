@@ -1,15 +1,22 @@
 .UserLogIn {
-  width: 75%;
+  width: 65%;
+  margin: auto;
+
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 
   button {
     &.active {
       color: #fff !important;
+
       &::before {
         transition: 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
         height: 40px;
       }
     }
   }
+
   .form {
     width: 100%;
   }

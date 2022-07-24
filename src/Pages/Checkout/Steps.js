@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 // import Icons
 import {
@@ -86,11 +85,13 @@ function Steps({ activeTab, setActiveTab, IsActive, isLoggedIn }) {
         </div>
       </div>
 
-      {/* payment */}
+      {/* order_placed */}
 
       <div
         eventKey="order_placed"
-        className={`step-item ${IsActive === 3 && "active"}`}
+        className={`step-item ${
+          (IsActive === 3 && "active") || (IsActive === 4 && "active")
+        }`}
       >
         <div className="step-progress">
           <span className="step-count">

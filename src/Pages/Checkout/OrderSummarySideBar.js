@@ -11,7 +11,7 @@ function OrderSummarySideBar({ className, isHide }) {
   return (
     <div
       className={`col-lg-4 order__sidebar bg-secondary pt-4 pb-4 ps-lg-4 shadow-lg rounded-2 ${
-        isHide ? "" : "height-500"
+        isHide ? "" : "height-300"
       }`}
     >
       <div className="border-bottom py-3 pb-sm-2 mb-2">
@@ -82,24 +82,26 @@ function OrderSummarySideBar({ className, isHide }) {
                   </div>
                 */}
           {/* coupon code */}
-          <form className=" needs-validation">
-            <div className="mb-2">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="coupon code"
-              />
-              <div className="invalid-feedback">
-                Please provide coupon code.
+          {isHide && (
+            <form className=" needs-validation">
+              <div className="mb-2">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="coupon code"
+                />
+                <div className="invalid-feedback">
+                  Please provide coupon code.
+                </div>
               </div>
-            </div>
-            <button
-              className="btn btn-primary d-block w-100 text-capitalize"
-              type="button"
-            >
-              Apply coupon code
-            </button>
-          </form>
+              <button
+                className="btn btn-primary d-block w-100 text-capitalize"
+                type="button"
+              >
+                Apply coupon code
+              </button>
+            </form>
+          )}
         </React.Fragment>
       ) : (
         <NoCartItems />

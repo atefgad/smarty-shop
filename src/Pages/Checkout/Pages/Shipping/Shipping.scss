@@ -1,0 +1,33 @@
+.address__card__item {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+    padding: 0 10px;
+
+    .card__item__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 10px !important;
+
+
+        .__content__left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            grid-gap: 2rem;
+            width: 85%;
+
+            label {
+                width: 100%;
+            }
+
+
+        }
+
+        .__content__right {
+            width: 15%;
+            text-align: center;
+        }
+
+    }
+}

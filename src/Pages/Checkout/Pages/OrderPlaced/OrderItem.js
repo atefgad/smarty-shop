@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function OrderItem({ cartItem }) {
   const { id, title, price, image, size, color, quantity } = cartItem;
   return (
-    <div className="d-sm-flex justify-content-between my-4 pb-3 border-bottom">
+    <div className="d-sm-flex justify-content-between my-2 pb-1 border-bottom">
       <div className="d-sm-flex align-items-center text-center text-sm-start">
         <Link
           to={`/product/${id}`}
@@ -13,9 +13,9 @@ function OrderItem({ cartItem }) {
           <img src={image} width="90" height="90" alt={title} />
         </Link>
         <div className="pt-2">
-          <h5 className="product-title mb-2">
+          <h6 className="product-title mb-2">
             <Link to={`/product/${id}`}>{title}</Link>
-          </h5>
+          </h6>
           {size && (
             <div className="fs-sm">
               <span className="text-muted fw-bold me-2">Size:</span>

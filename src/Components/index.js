@@ -16,6 +16,10 @@ import Login from "./Forms/Login";
 import Register from "./Forms/Register";
 
 import AddPaymentCard from "./Forms/AddPaymentCard";
+import AddAddress from "./Forms/AddAddress";
+
+import OrderConfirmation from "./OrderConfirmation";
+
 import Select from "./Forms/Select";
 import FormCheckInput from "./Forms/FormCheckInput";
 
@@ -60,6 +64,8 @@ export {
   Login,
   Register,
   AddPaymentCard,
+  AddAddress,
+  OrderConfirmation,
   Select,
   FormCheckInput,
   CartListItem,

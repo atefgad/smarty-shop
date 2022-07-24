@@ -18,25 +18,22 @@ import FormCheckInput from "../Forms/FormCheckInput";
 import { toast } from "react-toastify";
 
 function ProductCard({ product }) {
-  // const { wishList } = useSelector((state) => state.wish);
   const [toggleFav, setToggleFav] = useState(false);
   const [color, setColor] = useState(product.color[0]);
   const [size, setSize] = useState("");
-  const [err, setErr] = useState("");
-
-  // const wlist = wishList.map((item) => item.id === 2);
+  const [err, setErr] = useState(false);
 
   const dispatch = useDispatch();
 
   // Add to cart
   const handleAddToCart = (data) => {
-    if (size === "") {
-      setErr("choose a size");
-      toast.error("choose a size");
-    } else {
-      dispatch(addToCart(data));
-      setErr("");
-    }
+    dispatch(addToCart(data));
+    // if (!size) {
+    //   setErr(true);
+    //   toast.error("choose a size");
+    // } else {
+    //   setErr(false);
+    // }
   };
 
   // handle Add Wishlist
@@ -49,6 +46,7 @@ function ProductCard({ product }) {
     dispatch(removeWishItem(data));
     setToggleFav(!toggleFav);
   };
+  // console.log("product.size", product.size.length);
 
   return (
     <React.Fragment>
@@ -68,6 +66,7 @@ function ProductCard({ product }) {
                 <FormCheckInput
                   key={index}
                   item={item}
+                  id={product.id}
                   circle
                   sm
                   checkedVal={color}
@@ -102,11 +101,12 @@ function ProductCard({ product }) {
                 err !== "" ? "border-2 border-danger" : ""
               }`}
             >
-              <span>size: </span>
+              {/* <span>size: </span> */}
               {product.size.map((item, index) => (
                 <FormCheckInput
                   key={index}
                   item={item}
+                  id={product.id}
                   sm
                   checkedVal={size}
                   change={setSize}

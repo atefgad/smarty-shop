@@ -53,7 +53,7 @@ function Login() {
             Sign Up
           </a>
         </div>
-
+        {/* form fields
         <small className="d-block mt-3 mb-2 text-start">
           Login with demo account
         </small>
@@ -65,6 +65,7 @@ function Login() {
             <strong> Password: </strong> kfejk@*_
           </div>
         </div>
+         */}
       </div>
       {/* form fields */}
       <Formik

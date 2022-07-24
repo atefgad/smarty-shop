@@ -36,15 +36,16 @@ function Login({ show, setActive }) {
         validationSchema={LoginSchema}
         onSubmit={(values) => {
           if (dispatch(login(values))) {
-            setActive(1);
             if (isLoggedIn) {
-              return;
+              setActive(1);
             }
           }
         }}
       >
         {({ errors, touched }) => (
           <Form className="form">
+            {/* 
+
             <small className="d-block mt-2 mb-2 text-start">
               Login with demo account
             </small>
@@ -58,12 +59,14 @@ function Login({ show, setActive }) {
                 <strong> Password: </strong> kfejk@*_
               </div>
             </div>
+
+*/}
             {/* Email field */}
             <div className="mb-3">
               <Field
                 className={`form-control ${errors.email ? "is-invalid" : null}`}
                 name="email"
-                placeholder="Email or Username"
+                placeholder="Email"
               />
               {errors.email && touched.email ? (
                 <div className="invalid-feedback">{errors.email}</div>

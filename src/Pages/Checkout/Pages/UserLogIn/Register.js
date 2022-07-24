@@ -84,7 +84,7 @@ function Register({ show, setActive }) {
               <Field
                 className={`form-control ${errors.email ? "is-invalid" : null}`}
                 name="email"
-                placeholder="Email or Username"
+                placeholder="Email"
               />
               {errors.email && touched.email ? (
                 <div className="invalid-feedback">{errors.email}</div>

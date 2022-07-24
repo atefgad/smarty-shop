@@ -9,8 +9,7 @@
       padding-right: 2.5rem;
     }
 
-    .checkout-heading {
-    }
+    .checkout-heading {}
 
     .checkout-content {
       input {
@@ -22,9 +21,10 @@
   }
 
   .order__sidebar {
-    &.height-500 {
-      height: 500px !important;
+    &.height-300 {
+      height: 300px !important;
     }
+
     .cart__summary__items {
       max-height: 350px;
       overflow-y: scroll;

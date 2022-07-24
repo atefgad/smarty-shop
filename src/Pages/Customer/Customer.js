@@ -112,7 +112,7 @@ function Customer() {
           ) : (
             <React.Fragment>
               <h4 className="mb-3">Some things you can do here</h4>
-              <Row className="d-flex align-items-center">
+              <Row className="d-flex align-items-center justify-content-center">
                 {filterdResult.map((item, index) => (
                   <motion.div
                     className="col-md-4"

@@ -1,17 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import {
-  IoCloseCircleOutline,
-  IoCloseOutline,
-  IoCloseSharp,
-  IoSearchOutline,
-} from "react-icons/io5";
+import { IoCloseOutline, IoSearchOutline } from "react-icons/io5";
 
 function SearchBar({ show, hide }) {
   const searchREF = useRef(null);
 
   useEffect(() => {
     searchREF.current.focus();
-    console.log("ref", searchREF);
   }, [searchREF]);
 
   return (

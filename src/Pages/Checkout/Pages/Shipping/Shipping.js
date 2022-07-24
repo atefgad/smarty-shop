@@ -1,96 +1,53 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NextBtn, PrevBtn } from "../../../../Components/Buttons";
+import { openModal } from "../../../../store/modalSlice";
+
+import "./Shipping.scss";
 
 function Shipping({ setActive }) {
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const handleNextBtn = () => {
     setActive(2);
   };
   return (
     <div className="row mt-2 mb-4">
-      <h4 className="mb-3 text-capitalize">Shipping address</h4>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-fn">
-          First name<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input className="form-control" type="text" id="ch-fn" />
+      <div className="d-flex align-items-center justify-content-between mb-4 ">
+        <h4 className="text-capitalize">Shipping address</h4>
+        <button
+          className="btn btn-primary"
+          onClick={() => dispatch(openModal("AddAddress"))}
+        >
+          add ddress
+        </button>
       </div>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-ln">
-          Last names<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input className="form-control" type="text" id="ch-ln" />
+      <div className="p-2">
+        {isLoggedIn &&
+          user.addresses.map((item, index) => (
+            <div className="address__card__item mb-3" key={index}>
+              <div className="card__item__content">
+                <div className="__content__left">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id={item.index}
+                    name="group"
+                  />
+                  <label htmlFor={item.index}>
+                    <h5>{item.name.firstname + " " + item.name.lastname}</h5>
+                    <div>+2 {item.phone}</div>
+                    <div>{item.add_address + " - " + item.city}</div>
+                  </label>
+                </div>
+                <div className="__content__right">
+                  <button className="btn btn-outline-primary">Edit</button>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-address">
-          Street address<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          id="ch-address"
-          placeholder="House number and street name"
-        />
-      </div>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-address">
-          Apartment
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Apartment, suite, unit, etc. (optional)"
-        />
-      </div>
-      <div className="col-12 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-city">
-          Town / City<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input className="form-control" type="text" id="ch-city" />
-      </div>
-      <div className="col-9 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-country">
-          Country<sup className="text-danger ms-1">*</sup>
-        </label>
-        <select className="form-select" id="ch-country">
-          <option value="" selected="" disabled="" hidden="">
-            Choose country
-          </option>
-          <option value="Australia">Australia</option>
-          <option value="Canada">Canada</option>
-          <option value="Francee">France</option>
-          <option value="Germany">Germany</option>
-          <option value="Switzerland">Switzerland</option>
-          <option value="USA">USA</option>
-        </select>
-      </div>
-      <div className="col-3 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-postcode">
-          Postcode<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          id="ch-postcode"
-          placeholder="00-000"
-        />
-      </div>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-phone">
-          Phone<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          id="ch-phone"
-          placeholder="00-000-000-00"
-        />
-      </div>
-      <div className="col-sm-6 mb-3 pb-1">
-        <label className="form-label" htmlFor="ch-email">
-          Email address<sup className="text-danger ms-1">*</sup>
-        </label>
-        <input className="form-control" type="email" id="ch-email" />
-      </div>
+
       {/* Navigation (Prev && Next) */}
       <div className="navigation__bnts pt-4 mt-3">
         <div className="w-50 pe-3">

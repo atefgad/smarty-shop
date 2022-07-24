@@ -65,6 +65,11 @@ const cartSlice = createSlice({
         `${action.payload.title.substr(0, 25)}... has been removed from cart`
       );
     },
+    // clearCart
+    clearCart: (state) => {
+      state.cartItems = [];
+      localStorage.removeItem("cartItems");
+    },
     // increaseCart
     increaseCart: (state, action) => {
       const itemIndex = state.cartItems.findIndex(
@@ -126,5 +131,6 @@ export const {
   increaseCart,
   decreaseCart,
   removeCartItem,
+  clearCart,
   cartTotalPrice,
 } = cartSlice.actions;
