@@ -7,8 +7,7 @@
 
 # Preview of Website
 
-### Live demo
-  https://smrty.shop/
+### Live demo => https://smrty.shop/
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ![smarty-multi-screens](https://user-images.githubusercontent.com/31800681/214281886-51ad127a-de20-46d9-be27-8996522fd78d.jpg)
 
