@@ -4,10 +4,11 @@
 # Tools && Technicals
   [Html5 - Css3 - Reactjs - Redux - Reactbootstrap - Framer motion]
   
-# Link of Website
-  https://smrty.shop/
 
 # Preview
+
+## Link of Website
+  https://smrty.shop/
 
 ![smarty-multi-screens](https://user-images.githubusercontent.com/31800681/214281886-51ad127a-de20-46d9-be27-8996522fd78d.jpg)
 ![smarty-home-2022-04-05](https://user-images.githubusercontent.com/31800681/214283460-e4da6fa5-fa44-4340-a7e8-7083a32fe2d3.png)
